@@ -1,0 +1,3 @@
+rootProject.name = 'TranspoterFase1'
+
+include ':app'
