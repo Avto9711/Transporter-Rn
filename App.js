@@ -4,6 +4,7 @@ import {createAppContainer,createStackNavigator} from 'react-navigation'
 
 import  Login from './src/pages/Login'
 import RegistrationForm from './src/pages/RegistrationForm'
+import  InitialPage from './src/pages/InitialPage'
 
 const AppNavigator = createStackNavigator({
   AppWrapper: {
@@ -12,6 +13,9 @@ const AppNavigator = createStackNavigator({
   RegistrationFormPage: {
     screen: RegistrationForm
     
+  },
+  InitialPage : {
+    screen: InitialPage
   }
 },{
   initialRouteName: "AppWrapper",

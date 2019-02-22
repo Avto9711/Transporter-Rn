@@ -16,8 +16,7 @@ import { withNavigation } from 'react-navigation';
   render() {
     return (
         <View styles={styles.container}>
-        <StatusBar backgroundColor="#0069c0" barStyle="ligth-content" />
-            <Logo />
+            <Logo  textLabel="Transporter" textSize={40}  hiddenAditionalText={true}  />
             <LoginForm />
             <View style={styles.signupTextContainer}>
                 <Text style={styles.signupText}>Do not have an account yet? </Text>
