@@ -8,7 +8,7 @@ export default class Login extends Component<{}> {
   render() {
     return (
         <View styles={styles.container}>
-            <Logo />
+            <Logo  textLabel="Transporter" textSize={40}  hiddenAditionalText={true}  />
             <LoginForm />
             <View style={styles.signupTextContainer}>
                 <Text style={styles.signupText}>Do not have an account yet? </Text>

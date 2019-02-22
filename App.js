@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet,StatusBar, Text, View} from 'react-native';
 
 import  Login from './src/pages/Login'
+import  InitialPage from './src/pages/InitialPage'
 
 
 type Props = {};
@@ -10,8 +11,8 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#0069c0" barStyle="ligth-content" />
-        <Login />
-       
+        {/* <Login /> */}
+       <InitialPage/>
       </View>
     );
   }
