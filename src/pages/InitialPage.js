@@ -1,29 +1,40 @@
 import React, {Component} from 'react';
 import {StyleSheet,TouchableOpacity, Text, View} from 'react-native';
+import globalStyle from '../utils/styles'
 
 import Logo from '../components/Logo'
 
+import { withNavigation } from 'react-navigation';
 
-export default class InitialPage extends Component<{}> {
+ class InitialPage extends Component<{}> {
+
+    goTo = (page)=>{
+        this.props.navigation.navigate(page)
+    }
+
   render() {
     return (
-        <View styles={styles.container}>
-            <Logo textLabel="Transporter"  />
-            <View style={styles.containerButton}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Sign up</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.signupTextContainer}>
-                <Text style={styles.signupText}>Forgot your password? </Text>
+        <View style={globalStyle.container}>
+            <View style={styles.container}>
+                <Logo textLabel="Transporter"  />
+                <View style={styles.containerButton}>
+                    <TouchableOpacity onPress={()=>{this.goTo('RegistrationFormPage')}} style={styles.button}>
+                        <Text style={styles.buttonText}>Sign up</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{this.goTo('LoginPage')}} style={styles.button}>
+                        <Text  style={styles.buttonText}>Login</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.signupTextContainer}>
+                    <Text style={styles.signupText}>Forgot your password? </Text>
+                </View>
             </View>
         </View>
     );
   }
 }
+
+export default withNavigation(InitialPage)
 
 
 const styles = StyleSheet.create({

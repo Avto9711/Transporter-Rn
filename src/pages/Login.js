@@ -4,18 +4,18 @@ import {StyleSheet,StatusBar, Text, View, Button} from 'react-native';
 import Logo from '../components/Logo'
 import LoginForm from '../components/LoginForm'
 import { withNavigation } from 'react-navigation';
-
+import globalStyle from '../utils/styles'
  class Login extends Component {
 
   redirectToRegistrationForm = ()=>{
-    debugger
     this.props.navigation.navigate(
       'RegistrationFormPage'
     )
   }
   render() {
     return (
-        <View styles={styles.container}>
+      <View style={globalStyle.container}>
+       <View style={styles.container}>
             <Logo  textLabel="Transporter" textSize={40}  hiddenAditionalText={true}  />
             <LoginForm />
             <View style={styles.signupTextContainer}>
@@ -23,6 +23,8 @@ import { withNavigation } from 'react-navigation';
                 <Text onPress={()=>{this.props.navigation.navigate("RegistrationFormPage")}} style={styles.signupLinkText}>SignUp</Text>
             </View>
         </View>
+      </View>
+ 
     );
   }
 }

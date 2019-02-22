@@ -1,5 +1,5 @@
 import React, {Component,Provider} from 'react';
-import {StyleSheet,StatusBar, Text, View} from 'react-native';
+import {StyleSheet,StatusBar, Text, View, TouchableOpacity} from 'react-native';
 import {createAppContainer,createStackNavigator} from 'react-navigation'
 
 import  Login from './src/pages/Login'
@@ -8,18 +8,36 @@ import  InitialPage from './src/pages/InitialPage'
 
 const AppNavigator = createStackNavigator({
   AppWrapper: {
-      screen:  AppWrapper
+      screen:  AppWrapper,
+      navigationOptions: ({ navigation }) => ({
+        header: null,
+      })
   },
   RegistrationFormPage: {
-    screen: RegistrationForm
-    
+    screen: RegistrationForm,
+    navigationOptions: ({ navigation }) => ({
+      title: "Register",
+      headerTintColor:'white',
+      headerStyle:{
+        backgroundColor:'#0069c0'
+      }
+    }),
   },
   InitialPage : {
-    screen: InitialPage
+    screen: InitialPage,
+    navigationOptions: ({ navigation }) => ({
+      header: null,
+    })
+  },
+  LoginPage : {
+    screen: Login,
+    navigationOptions: ({ navigation }) => ({
+      header: null,
+    })
   }
 },{
   initialRouteName: "AppWrapper",
-  headerMode: "none"
+  
 })
 
 
@@ -29,9 +47,9 @@ const AppContainer = createAppContainer(AppNavigator)
 
 function AppWrapper(){
   return (
-      <View style={styles.container}>
+      <View style={{flex:1}}>
         <StatusBar backgroundColor="#0069c0" barStyle="ligth-content" />
-        <Login/>
+        <InitialPage/>
       </View>)
 }
 type Props = {};
@@ -45,11 +63,3 @@ export default class App extends Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
-  container:{
-    backgroundColor : "#2196f3",
-    flex: 1,
-    alignItems: "center",
-    justifyContent:"center"
-  }
-});
