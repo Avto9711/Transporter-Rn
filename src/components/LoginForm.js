@@ -2,10 +2,11 @@
 import React, { Component } from 'react';
 
 import  {StyleSheet, TouchableOpacity, Text, TextInput, View}  from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 type Props = {};
 
-export default class LoginForm extends Component<Props> {
+ class LoginForm extends Component<Props> {
     render() {
       return (
         <View style={styles.container}>
@@ -49,3 +50,5 @@ const styles = StyleSheet.create({
     }
    
 });
+
+export default withNavigation(LoginForm)
