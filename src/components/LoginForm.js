@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import  {StyleSheet, TouchableOpacity, Text, TextInput, View}  from 'react-native';
 import { withNavigation } from 'react-navigation';
+import globalColors from '../utils/colors';
 
 type Props = {};
 
@@ -10,8 +11,8 @@ type Props = {};
     render() {
       return (
         <View style={styles.container}>
-            <TextInput style={styles.inputBox}  underlineColorAndroid="rgba(0,0,0,0)" placeholder="User name" placeholderTextColor="#ffff" />
-            <TextInput style={styles.inputBox}  secureTextEntry={true} underlineColorAndroid="rgba(0,0,0,0)" placeholder="Password" placeholderTextColor="#ffff" />
+            <TextInput style={styles.inputBox}  underlineColorAndroid="rgba(0,0,0,0)" placeholder="User name" placeholderTextColor={globalColors.white} />
+            <TextInput style={styles.inputBox}  secureTextEntry={true} underlineColorAndroid="rgba(0,0,0,0)" placeholder="Password" placeholderTextColor={globalColors.white} />
             <TouchableOpacity style={styles.logginButton}>
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
@@ -32,11 +33,11 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         paddingHorizontal: 15,
         fontSize:16,
-        color: "#ffff",
+        color: globalColors.white,
         marginVertical: 10,
     },
     logginButton:{
-        backgroundColor: "#0069c0",
+        backgroundColor: globalColors.baseBlue,
         borderRadius: 25,
         marginVertical: 10,
         width: 300,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     buttonText : {
         fontSize: 16,
         fontWeight: '500',
-        color: "#ffff",
+        color: globalColors.white,
         textAlign:"center"
     }
    

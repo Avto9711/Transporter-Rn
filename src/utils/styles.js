@@ -1,14 +1,15 @@
+import globalColors from "./colors";
 
 const globalStyle = {}
 
 globalStyle.container = {
-    backgroundColor : "#2196f3",
+    backgroundColor : globalColors.baseContainerBlue,
     flex: 1,
     alignItems: "center",
     justifyContent:"center"
 }
 globalStyle.opacityButton = {
-    backgroundColor: "#0069c0",
+    backgroundColor: globalColors.baseBlue,
     borderRadius: 25,
     marginVertical: 10,
     width: 300,

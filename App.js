@@ -1,39 +1,52 @@
 import React, {Component,Provider} from 'react';
 import {StyleSheet,StatusBar, Text, View, TouchableOpacity} from 'react-native';
 import {createAppContainer,createStackNavigator} from 'react-navigation'
-
+import globalColors from './src/utils/colors';
+import Screens, {AuthStack} from './src/utils/screens'
 import  Login from './src/pages/Login'
 import RegistrationForm from './src/pages/RegistrationForm'
 import  InitialPage from './src/pages/InitialPage'
+import  ForgotPassword from './src/pages/ForgotPassword'
 
-const AppNavigator = createStackNavigator({
+
+const AppAuthNavigator = createStackNavigator({
   AppWrapper: {
       screen:  AppWrapper,
       navigationOptions: ({ navigation }) => ({
         header: null,
       })
   },
-  RegistrationFormPage: {
+  [AuthStack.RegistrationFormPage]: {
     screen: RegistrationForm,
     navigationOptions: ({ navigation }) => ({
       title: "Register",
-      headerTintColor:'white',
+      headerTintColor:globalColors.white,
       headerStyle:{
-        backgroundColor:'#0069c0'
+        backgroundColor:globalColors.baseBlue
       }
     }),
   },
-  InitialPage : {
+  [AuthStack.InitialPage] : {
     screen: InitialPage,
     navigationOptions: ({ navigation }) => ({
       header: null,
     })
   },
-  LoginPage : {
+  [AuthStack.LoginPage] : {
     screen: Login,
     navigationOptions: ({ navigation }) => ({
       header: null,
     })
+  },
+  [AuthStack.ForgotPassword]:{
+      screen:ForgotPassword,
+      navigationOptions: ({ navigation }) => ({
+        title: "Recover Password",
+        headerTintColor:globalColors.white,
+        headerStyle:{
+          backgroundColor:globalColors.baseBlue
+        }
+      }),
   }
 },{
   initialRouteName: "AppWrapper",
@@ -42,13 +55,13 @@ const AppNavigator = createStackNavigator({
 
 
 
-const AppContainer = createAppContainer(AppNavigator)
+const AppContainer = createAppContainer(AppAuthNavigator)
 
 
 function AppWrapper(){
   return (
       <View style={{flex:1}}>
-        <StatusBar backgroundColor="#0069c0" barStyle="ligth-content" />
+        <StatusBar backgroundColor={globalColors.baseBlue} barStyle="ligth-content" />
         <InitialPage/>
       </View>)
 }

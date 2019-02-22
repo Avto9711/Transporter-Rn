@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet,TouchableOpacity, Text, View} from 'react-native';
 import globalStyle from '../utils/styles'
+import  {AuthStack} from '../utils/screens'
 
 import Logo from '../components/Logo'
 
@@ -18,15 +19,15 @@ import { withNavigation } from 'react-navigation';
             <View style={styles.container}>
                 <Logo textLabel="Transporter"  />
                 <View style={styles.containerButton}>
-                    <TouchableOpacity onPress={()=>{this.goTo('RegistrationFormPage')}} style={styles.button}>
+                    <TouchableOpacity onPress={()=>{this.goTo(AuthStack.RegistrationFormPage)}} style={styles.button}>
                         <Text style={styles.buttonText}>Sign up</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.goTo('LoginPage')}} style={styles.button}>
+                    <TouchableOpacity onPress={()=>{this.goTo(AuthStack.LoginPage)}} style={styles.button}>
                         <Text  style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.signupTextContainer}>
-                    <Text style={styles.signupText}>Forgot your password? </Text>
+                    <Text onPress={()=>{this.goTo(AuthStack.ForgotPassword)}} style={styles.signupText}>Forgot your password? </Text>
                 </View>
             </View>
         </View>

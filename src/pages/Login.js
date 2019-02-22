@@ -5,12 +5,13 @@ import Logo from '../components/Logo'
 import LoginForm from '../components/LoginForm'
 import { withNavigation } from 'react-navigation';
 import globalStyle from '../utils/styles'
+import globalColors from '../utils/colors';
+import  {AuthStack} from '../utils/screens'
+
  class Login extends Component {
 
   redirectToRegistrationForm = ()=>{
-    this.props.navigation.navigate(
-      'RegistrationFormPage'
-    )
+    this.props.navigation.navigate(AuthStack.RegistrationFormPage);
   }
   render() {
     return (
@@ -20,7 +21,7 @@ import globalStyle from '../utils/styles'
             <LoginForm />
             <View style={styles.signupTextContainer}>
                 <Text style={styles.signupText}>Do not have an account yet? </Text>
-                <Text onPress={()=>{this.props.navigation.navigate("RegistrationFormPage")}} style={styles.signupLinkText}>SignUp</Text>
+                <Text onPress={()=>{this.props.navigation.navigate(AuthStack.RegistrationFormPage)}} style={styles.signupLinkText}>SignUp</Text>
             </View>
         </View>
       </View>
@@ -34,7 +35,7 @@ export default withNavigation(Login)
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor : "#2196f3",
+    backgroundColor : globalColors.baseContainerBlue,
     flex: 1,
     alignItems: "center",
     justifyContent:"center"
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         color: 'rgba(255,255,255,0.6)'
     },
     signupLinkText:{
-        color: '#ffff',
+        color: globalColors.white,
         fontSize: 14,
         fontWeight: '500',
     }
