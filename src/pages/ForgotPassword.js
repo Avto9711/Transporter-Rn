@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Text,TouchableOpacity, Alert} from 'react-native'
 import {withNavigation} from 'react-navigation';
 import globalStyle from '../utils/styles'
+import { connect } from 'react-redux';
 
 import {Grid, Col, Container, Content, H3, Label,Input,Item,Form} from 'native-base'
 class ForgotPassword extends Component {
@@ -39,5 +40,14 @@ class ForgotPassword extends Component {
     }
 }
 
+  
+const mapStateToProps = state => ({
+    token: state.token,
+});
+  
+const mapDispatchToProps = dispatch => ({
+//removeUserToken: () => dispatch(removeUserToken()),
+});
 
-export default withNavigation(ForgotPassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
+  

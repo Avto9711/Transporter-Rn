@@ -4,16 +4,27 @@ import React, { Component } from 'react';
 import  {StyleSheet, TouchableOpacity, Text, TextInput, View}  from 'react-native';
 import { withNavigation } from 'react-navigation';
 import globalColors from '../utils/colors';
+import { saveUserToken } from '../actions/actions';
+import { connect } from 'react-redux';
 
-type Props = {};
+ class LoginForm extends React.Component {
 
- class LoginForm extends Component<Props> {
+    _signInAsync = () => {
+        this.props.saveUserToken()
+            .then(() => {
+                this.props.navigation.navigate('App');
+            })
+            .catch((error) => {
+                this.setState({ error })
+            })
+    };
+
     render() {
       return (
         <View style={styles.container}>
             <TextInput style={styles.inputBox}  underlineColorAndroid="rgba(0,0,0,0)" placeholder="User name" placeholderTextColor={globalColors.white} />
             <TextInput style={styles.inputBox}  secureTextEntry={true} underlineColorAndroid="rgba(0,0,0,0)" placeholder="Password" placeholderTextColor={globalColors.white} />
-            <TouchableOpacity style={styles.logginButton}>
+            <TouchableOpacity style={styles.logginButton} onPress={() => {this._signInAsync();}}>
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
@@ -52,4 +63,12 @@ const styles = StyleSheet.create({
    
 });
 
-export default withNavigation(LoginForm)
+const mapStateToProps = state => ({
+    token: state.token,
+});
+
+const mapDispatchToProps = dispatch => ({
+    saveUserToken: () => dispatch(saveUserToken()),
+});
+
+export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(LoginForm));

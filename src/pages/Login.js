@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet,StatusBar, Text, View, Button} from 'react-native';
 
 import Logo from '../components/Logo'
@@ -6,13 +6,16 @@ import LoginForm from '../components/LoginForm'
 import { withNavigation } from 'react-navigation';
 import globalStyle from '../utils/styles'
 import globalColors from '../utils/colors';
-import  {AuthStack} from '../utils/screens'
+import  {AuthScreensStack} from '../utils/screens'
 
- class Login extends Component {
+import { connect } from 'react-redux';
+
+ class Login extends React.Component {
 
   redirectToRegistrationForm = ()=>{
-    this.props.navigation.navigate(AuthStack.RegistrationFormPage);
+    this.props.navigation.navigate(AuthScreensStack.RegistrationFormPage);
   }
+
   render() {
     return (
       <View style={globalStyle.container}>
@@ -21,7 +24,7 @@ import  {AuthStack} from '../utils/screens'
             <LoginForm />
             <View style={styles.signupTextContainer}>
                 <Text style={styles.signupText}>Do not have an account yet? </Text>
-                <Text onPress={()=>{this.props.navigation.navigate(AuthStack.RegistrationFormPage)}} style={styles.signupLinkText}>SignUp</Text>
+                <Text onPress={()=>{this.redirectToRegistrationForm();}} style={styles.signupLinkText}>SignUp</Text>
             </View>
         </View>
       </View>
@@ -29,9 +32,6 @@ import  {AuthStack} from '../utils/screens'
     );
   }
 }
-
-export default withNavigation(Login)
-
 
 const styles = StyleSheet.create({
   container:{
@@ -57,3 +57,14 @@ const styles = StyleSheet.create({
     }
   });
   
+  
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
+
+const mapDispatchToProps = dispatch => ({
+  //removeUserToken: () => dispatch(removeUserToken()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

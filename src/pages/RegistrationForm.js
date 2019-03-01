@@ -1,12 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {View,Text, FormLabel, FormInput,TextInput, TouchableOpacity, Image} from 'react-native';
 import globalStyle from '../utils/styles'
 import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base';
-class RegistrationForm extends Component {
-    state = {  }
-    constructor(props){
-        super(props);
-    }
+import { saveUserToken } from '../actions/actions';
+import { connect } from 'react-redux';
+
+class RegistrationForm extends React.Component {
+
+    _signInAsync = () => {
+        this.props.saveUserToken()
+            .then(() => {
+                this.props.navigation.navigate('App');
+            })
+            .catch((error) => {
+                this.setState({ error })
+            })
+    };
+
     render() {
         return (
             <Container>
@@ -33,8 +43,8 @@ class RegistrationForm extends Component {
                   <Label>Confirm Password</Label>
                   <Input  secureTextEntry={true} />
                 </Item>
-                <TouchableOpacity style={[globalStyle.opacityButton, {marginVertical: 40, alignSelf:"center"}]}>
-                    <Text style={globalStyle.buttonTextOpacity}>Create account</Text>
+                <TouchableOpacity style={[globalStyle.opacityButton, {marginVertical: 40, alignSelf:"center"}]} onPress={() => {this._signInAsync();}} >
+                    <Text style={globalStyle.buttonTextOpacity} >Create account</Text>
                 </TouchableOpacity>
               </Form>
             </Content>
@@ -43,4 +53,16 @@ class RegistrationForm extends Component {
     }
 }
 
-export default RegistrationForm;
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    saveUserToken: () => dispatch(saveUserToken())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
+

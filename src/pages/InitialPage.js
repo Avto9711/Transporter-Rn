@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet,TouchableOpacity, Text, View} from 'react-native';
 import globalStyle from '../utils/styles'
-import  {AuthStack} from '../utils/screens'
+import  {AuthScreensStack} from '../utils/screens'
 
 import Logo from '../components/Logo'
 
-import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 
- class InitialPage extends Component<{}> {
+class InitialPage extends React.Component{
 
     goTo = (page)=>{
         this.props.navigation.navigate(page)
@@ -19,23 +19,21 @@ import { withNavigation } from 'react-navigation';
             <View style={styles.container}>
                 <Logo textLabel="Transporter"  />
                 <View style={styles.containerButton}>
-                    <TouchableOpacity onPress={()=>{this.goTo(AuthStack.RegistrationFormPage)}} style={styles.button}>
+                    <TouchableOpacity onPress={()=>{this.goTo(AuthScreensStack.RegistrationFormPage)}} style={styles.button}>
                         <Text style={styles.buttonText}>Sign up</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.goTo(AuthStack.LoginPage)}} style={styles.button}>
+                    <TouchableOpacity onPress={()=>{this.goTo(AuthScreensStack.LoginPage)}} style={styles.button}>
                         <Text  style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.signupTextContainer}>
-                    <Text onPress={()=>{this.goTo(AuthStack.ForgotPassword)}} style={styles.signupText}>Forgot your password? </Text>
+                    <Text onPress={()=>{this.goTo(AuthScreensStack.ForgotPassword)}} style={styles.signupText}>Forgot your password? </Text>
                 </View>
             </View>
         </View>
     );
   }
 }
-
-export default withNavigation(InitialPage)
 
 
 const styles = StyleSheet.create({
@@ -75,5 +73,17 @@ const styles = StyleSheet.create({
       signupText:{
           color: 'rgba(255,255,255,0.8)'
       },
+});
+  
+
+const mapStateToProps = state => ({
+    token: state.token,
   });
+  
+  
+const mapDispatchToProps = dispatch => ({
+//removeUserToken: () => dispatch(removeUserToken()),
+});
+  
+export default connect(mapStateToProps, mapDispatchToProps)(InitialPage);
   

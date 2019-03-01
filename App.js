@@ -1,22 +1,26 @@
-import React, {Component,Provider} from 'react';
+import React, {Component, applyMiddleware, compose } from 'react';
 import {StyleSheet,StatusBar, Text, View, TouchableOpacity} from 'react-native';
-import {createAppContainer,createStackNavigator} from 'react-navigation'
+import {createAppContainer,createStackNavigator, createDrawerNavigator, createSwitchNavigator} from 'react-navigation'
 import globalColors from './src/utils/colors';
-import Screens, {AuthStack} from './src/utils/screens'
+import Screens, {AuthScreensStack} from './src/utils/screens'
 import  Login from './src/pages/Login'
 import RegistrationForm from './src/pages/RegistrationForm'
 import  InitialPage from './src/pages/InitialPage'
 import  ForgotPassword from './src/pages/ForgotPassword'
+import  OtherScreen from './src/pages/OtherScreen'
+import  AuthLoading from './src/pages/AuthLoading'
+import {Provider} from 'react-redux'
+import store from './src/store/store';
 
 
-const AppAuthNavigator = createStackNavigator({
-  AppWrapper: {
-      screen:  AppWrapper,
-      navigationOptions: ({ navigation }) => ({
-        header: null,
-      })
+const RouteAuthConfig = {
+  [AuthScreensStack.InitialPage] : {
+    screen: InitialPage,
+    navigationOptions: ({ navigation }) => ({
+      header: null,
+    })
   },
-  [AuthStack.RegistrationFormPage]: {
+  [AuthScreensStack.RegistrationFormPage]: {
     screen: RegistrationForm,
     navigationOptions: ({ navigation }) => ({
       title: "Register",
@@ -26,19 +30,14 @@ const AppAuthNavigator = createStackNavigator({
       }
     }),
   },
-  [AuthStack.InitialPage] : {
-    screen: InitialPage,
-    navigationOptions: ({ navigation }) => ({
-      header: null,
-    })
-  },
-  [AuthStack.LoginPage] : {
+ 
+  [AuthScreensStack.LoginPage] : {
     screen: Login,
     navigationOptions: ({ navigation }) => ({
       header: null,
     })
   },
-  [AuthStack.ForgotPassword]:{
+  [AuthScreensStack.ForgotPassword]:{
       screen:ForgotPassword,
       navigationOptions: ({ navigation }) => ({
         title: "Recover Password",
@@ -48,30 +47,43 @@ const AppAuthNavigator = createStackNavigator({
         }
       }),
   }
-},{
-  initialRouteName: "AppWrapper",
-  
-})
+};
 
-
-
-const AppContainer = createAppContainer(AppAuthNavigator)
-
-
-function AppWrapper(){
-  return (
-      <View style={{flex:1}}>
-        <StatusBar backgroundColor={globalColors.baseBlue} barStyle="ligth-content" />
-        <InitialPage/>
-      </View>)
+const RouteAppConfig = {
+  Other: { 
+    screen: OtherScreen
+  }
 }
+
+const AppStack = createDrawerNavigator(RouteAppConfig);
+
+const AuthStack =  createStackNavigator(RouteAuthConfig );
+
+
+const AppContainer = createAppContainer(
+  createSwitchNavigator(
+    {
+      AuthLoading: AuthLoading,
+      App: AppStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'AuthLoading',
+    }
+  )
+);
+
+
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-     
-        <AppContainer/>
-     
+      <Provider store={store}>
+        <View style={{flex:1}}>
+          <StatusBar backgroundColor={globalColors.baseBlue} barStyle="ligth-content" />
+          <AppContainer/>
+        </View>
+      </Provider>
     );
   }
 }

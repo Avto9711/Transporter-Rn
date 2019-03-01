@@ -1,15 +1,19 @@
-const Screens = {}
-Screens.AuthStack = {}
-Screens.AppStack = {}
+const Screens = {
+    AppStack: {},
+    AuthStack: {
+        RegistrationFormPage: 'RegistrationFormPage',
+        InitialPage: 'InitialPage',
+        LoginPage: 'LoginPage',
+        ForgotPassword: 'ForgotPassword'
+    }
+}
 
-        Screens.AuthStack.RegistrationFormPage = 'RegistrationFormPage';
-        Screens.AuthStack.InitialPage = 'InitialPage';
-        Screens.AuthStack.LoginPage = 'LoginPage';
-        Screens.AuthStack.ForgotPassword = 'ForgotPassword';
 
+const AuthScreensStack = Screens.AuthStack;
+const AppStack = Screens.AppStack;
 
-    const AuthStack = Screens.AuthStack;
+export {AuthScreensStack}
 
-export {AuthStack}
+export {AppStack}
 
 export default Screens;
