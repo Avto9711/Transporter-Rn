@@ -6,10 +6,13 @@ import { withNavigation } from 'react-navigation';
 import globalColors from '../utils/colors';
 import { saveUserToken } from '../actions/actions';
 import { connect } from 'react-redux';
+import {BaseApiService} from '../services/api/baseApi'
 
  class LoginForm extends React.Component {
 
     _signInAsync = () => {
+
+        BaseApiService.get()
         this.props.saveUserToken()
             .then(() => {
                 this.props.navigation.navigate('App');
