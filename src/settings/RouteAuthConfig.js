@@ -1,10 +1,10 @@
-import Screens, {AuthScreensStack,AppStack} from './src/utils/screens'
+import Screens, {AuthScreensStack,AppStack} from '../utils/screens'
 import  Login from '../pages/Login'
 import RegistrationForm from '../pages/RegistrationForm'
 import  InitialPage from '../pages/InitialPage'
 import  ForgotPassword from '../pages/ForgotPassword'
 import  HomeScreen from '../pages/HomeScreen'
-import globalColors from './src/utils/colors';
+import globalColors from '../utils/colors';
 
 
 const RouteAuthConfig = {
