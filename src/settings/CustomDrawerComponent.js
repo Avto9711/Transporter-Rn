@@ -1,6 +1,9 @@
 import React from 'react';
 import {StatusBar,  View, SafeAreaView,ScrollView,Dimensions, Image,StyleSheet, Text} from 'react-native';
 import  {Icon, Badge, Text as Test, Button as RnButton, ListItem, Left} from 'native-base'
+import globalColors from '../utils/colors';
+
+import {DrawerItems} from 'react-navigation'
 
 
 const CustomDrawerComponent = props =>(
@@ -8,7 +11,7 @@ const CustomDrawerComponent = props =>(
       <SafeAreaView style={{flex:1}}>
       <View style={{flex:1, flexDirection:'row', justifyContent:'center'}}>
         <View style={styles.profileImage}>
-            <Image source={require("./src/images/user.png")} style={{width: 72,height: 72 }}  />
+            <Image source={require("../images/user.png")} style={{width: 72,height: 72 }}  />
           </View>
           <View style={{flex:1, flexDirection:'column', marginTop:30, marginLeft:0}}>
                 <Text style={{padding:4, fontWeight:"bold"}}>Israel Rivera</Text>
