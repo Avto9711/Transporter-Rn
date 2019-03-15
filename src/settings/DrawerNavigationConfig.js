@@ -6,6 +6,8 @@ import  RegistrationForm from '../pages/RegistrationForm'
 import  Trip from '../pages/Trip'
 import  TransporterBoard from '../pages/TransporterBoard'
 import  Messages from '../pages/Messages'
+import  PrivacyAndTerms from '../pages/PrivacyAndTerms'
+import  Settings from '../pages/Settings'
 
 
 import {AppStack} from '../utils/screens'
@@ -13,27 +15,74 @@ import {AppStack} from '../utils/screens'
 
 const DrawerRouteConfig = {
     [AppStack.Home]: { 
-      screen: HomeScreen
+      screen: HomeScreen,
+      drawerMenuConfig:{
+        showInDrawerMenu:true,
+        drawerMenuTitle:"Home",
+        titleIcon:"home",
+        titleIconType:"FontAwesome"
+      }
+
     },
     [AppStack.PackageDelivery]: { 
-      screen: PackageDelivery
+      screen: PackageDelivery,
+      drawerMenuConfig:{
+        drawerMenuTitle:"Package for delivery",
+        titleIcon:"plus",
+      }
+      
     },
     [AppStack.Trip]: { 
-      screen: Trip
+      screen: Trip,
+      drawerMenuConfig:{
+        drawerMenuTitle:"Trips",
+        titleIcon:"plane",
+      }
+      
     },
     [AppStack.RecipientsBoard]: { 
-      screen: RecipientsBoard
+      screen: RecipientsBoard,
+      drawerMenuConfig:{
+        drawerMenuTitle:"Recipients Board",
+        titleIcon:"th",
+      }
     },
     [AppStack.TransporterBoard]: { 
-      screen: TransporterBoard
+      screen: TransporterBoard,
+      drawerMenuConfig:{
+        drawerMenuTitle:"Transporter Board",
+        titleIcon:"address-book-o",
+      }
     },
     
     [AppStack.Message]: { 
-      screen: Messages
+      screen: Messages,
+      drawerMenuConfig:{
+        drawerMenuTitle:"Messages",
+        titleIcon:"comments-o",
+      }
     },
     
     [AppStack.MyRecipientsCouriers]: { 
-      screen: MyRecipientsCouriers
+      screen: MyRecipientsCouriers,
+      drawerMenuConfig:{
+         drawerMenuTitle:"My recipients/Couriers",
+         titleIcon:"list-ul",
+      }
+    },
+    [AppStack.PrivacyAndTerms]: { 
+      screen: PrivacyAndTerms,
+      drawerMenuConfig:{
+         drawerMenuTitle:"Privacy and Terms",
+         titleIcon:"lock",
+      }
+    },
+    [AppStack.Settings]: { 
+      screen: Settings,
+      drawerMenuConfig:{
+         drawerMenuTitle:"Settings",
+         titleIcon:"cog",
+      }
     },
 
   }

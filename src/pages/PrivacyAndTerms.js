@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View} from 'react-native';
 import globalColors from '../utils/colors'
 import {Header,Left,Icon, Container, Content,Body,Title,Right, Button, Text} from 'native-base'
-class PackageDelivery extends Component{
+class PrivacyAndTerms extends Component{
     static navigationOptions = {
        
     };
@@ -21,7 +21,7 @@ class PackageDelivery extends Component{
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Package for delivery</Title>
+                            <Title>Privacy And Terms</Title>
                         </Body>
                 </Header>
                 <Content>
@@ -33,4 +33,4 @@ class PackageDelivery extends Component{
     
 }
 
-export default PackageDelivery
+export default PrivacyAndTerms

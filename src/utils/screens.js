@@ -6,7 +6,9 @@ const Screens = {
         RecipientsBoard: "RecipientsBoardPage",
         Trip: "TripPage",
         TransporterBoard: "TransporterBoardPage",
-        MyRecipientsCouriers:"MyRecipientsCouriersPage"
+        MyRecipientsCouriers:"MyRecipientsCouriersPage",
+        Settings: "SettingsPage",
+        PrivacyAndTerms:"PrivacyAndTermsPage"
     },
     AuthStack: {
         RegistrationFormPage: 'RegistrationFormPage',

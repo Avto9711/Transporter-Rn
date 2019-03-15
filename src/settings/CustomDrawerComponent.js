@@ -3,29 +3,20 @@ import {StatusBar,  View, SafeAreaView,ScrollView,Dimensions, Image,StyleSheet, 
 import  {Icon, Badge, Text as Test, Button as RnButton, Left,List,ListItem} from 'native-base'
 import globalColors from '../utils/colors';
 
-import {DrawerItems} from 'react-navigation'
+import DrawerRouteConfig from '../settings/DrawerNavigationConfig'
+import {HrView} from '../utils/helpers'
 
+var datas = []
 
-const datas = [
-  {
-    name: "Settings",
-    route: "Anatomy",
-    icon: "cog",
-    bg: "#C5F442"
-  },
-  {
-    name: "Privacy and Terms",
-    route: "Anatomy",
-    icon: "lock",
-    bg: "#C5F442"
-  },
-  {
-    name: "Logout",
-    route: "Anatomy",
-    icon: "power-off",
-    bg: "#C5F442"
-  }
-]
+for (var prop in DrawerRouteConfig){
+  datas.push({
+      name: DrawerRouteConfig[prop].drawerMenuConfig.drawerMenuTitle,
+      route: prop,
+      icon: DrawerRouteConfig[prop].drawerMenuConfig.titleIcon || "ban",
+      iconType:DrawerRouteConfig[prop].drawerMenuConfig.titleIconType || "FontAwesome" ,
+      showInMenu: DrawerRouteConfig[prop].drawerMenuConfig.showInDrawerMenu === undefined ?  true : DrawerRouteConfig[prop].drawerMenuConfig.showInDrawerMenu
+  })
+}
 
 const CustomDrawerComponent = props =>(
 
@@ -47,33 +38,52 @@ const CustomDrawerComponent = props =>(
             </RnButton>
           </View>
       </View>
-          <DrawerItems {...props}/>
-          <View>
-
-          </View>
-
+          <HrView/>
           <List>
             <FlatList
               data={datas}
               keyExtractor={item => item.name}
               renderItem={({item}) =>
-                <ListItem
+                (item.showInMenu && 
+                    <ListItem
+                      button
+                      noBorder
+                      onPress={()=>{props.navigation.navigate(item.route)}}
+                    >
+                      <Left>
+                        <Icon
+                          active
+                          type={item.iconType}
+                          name={item.icon}
+                          style={{ color: "#777", fontSize: 26, width: 30 }}
+                        />
+                        <Text style={styles.text}>
+                          {item.name}
+                        </Text>
+                      </Left>
+                    </ListItem>
+                  )
+                }
+            />
+              <HrView/>
+              <ListItem
                   button
                   noBorder
+                  onPress={()=>{}}
                 >
                   <Left>
                     <Icon
                       active
                       type="FontAwesome"
-                      name={item.icon}
+                      name="power-off"
                       style={{ color: "#777", fontSize: 26, width: 30 }}
                     />
                     <Text style={styles.text}>
-                      {item.name}
+                      Log out
                     </Text>
                   </Left>
-                </ListItem>}
-            />
+                </ListItem>
+
           </List>
 
         </SafeAreaView>
@@ -95,6 +105,6 @@ const CustomDrawerComponent = props =>(
         color:'black',
         fontWeight:'bold'
       },
-      })
+    })
 
   export default CustomDrawerComponent;
