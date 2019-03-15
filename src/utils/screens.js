@@ -1,6 +1,12 @@
 const Screens = {
     AppStack: {
-        Home:"HomePage"
+        Home:"HomePage",
+        Message:"MessagePage",
+        PackageDelivery: "PackageDeliveryPage",
+        RecipientsBoard: "RecipientsBoardPage",
+        Trip: "TripPage",
+        TransporterBoard: "TransporterBoardPage",
+        MyRecipientsCouriers:"MyRecipientsCouriersPage"
     },
     AuthStack: {
         RegistrationFormPage: 'RegistrationFormPage',

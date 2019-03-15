@@ -1,19 +1,41 @@
 import React from 'react';
-import {StatusBar,  View, SafeAreaView,ScrollView,Dimensions, Image,StyleSheet, Text} from 'react-native';
-import  {Icon, Badge, Text as Test, Button as RnButton, ListItem, Left} from 'native-base'
+import {StatusBar,  View, SafeAreaView,ScrollView,Dimensions, Image,StyleSheet, Text,FlatList,Platform} from 'react-native';
+import  {Icon, Badge, Text as Test, Button as RnButton, Left,List,ListItem} from 'native-base'
 import globalColors from '../utils/colors';
 
 import {DrawerItems} from 'react-navigation'
 
 
+const datas = [
+  {
+    name: "Settings",
+    route: "Anatomy",
+    icon: "cog",
+    bg: "#C5F442"
+  },
+  {
+    name: "Privacy and Terms",
+    route: "Anatomy",
+    icon: "lock",
+    bg: "#C5F442"
+  },
+  {
+    name: "Logout",
+    route: "Anatomy",
+    icon: "power-off",
+    bg: "#C5F442"
+  }
+]
+
 const CustomDrawerComponent = props =>(
+
     <ScrollView >
       <SafeAreaView style={{flex:1}}>
       <View style={{flex:1, flexDirection:'row', justifyContent:'center'}}>
         <View style={styles.profileImage}>
             <Image source={require("../images/user.png")} style={{width: 72,height: 72 }}  />
           </View>
-          <View style={{flex:1, flexDirection:'column', marginTop:30, marginLeft:0}}>
+          <View style={{flex:1, flexDirection:'column', marginTop:30, marginLeft:15}}>
                 <Text style={{padding:4, fontWeight:"bold"}}>Israel Rivera</Text>
                 <Text style={{padding:4, fontWeight:"bold"}}>Profile Settings</Text>
                 <Text style={{padding:4, fontWeight:"bold"}}>Public profile view</Text>
@@ -25,8 +47,36 @@ const CustomDrawerComponent = props =>(
             </RnButton>
           </View>
       </View>
-        <DrawerItems {...props}/>
-            </SafeAreaView>
+          <DrawerItems {...props}/>
+          <View>
+
+          </View>
+
+          <List>
+            <FlatList
+              data={datas}
+              keyExtractor={item => item.name}
+              renderItem={({item}) =>
+                <ListItem
+                  button
+                  noBorder
+                >
+                  <Left>
+                    <Icon
+                      active
+                      type="FontAwesome"
+                      name={item.icon}
+                      style={{ color: "#777", fontSize: 26, width: 30 }}
+                    />
+                    <Text style={styles.text}>
+                      {item.name}
+                    </Text>
+                  </Left>
+                </ListItem>}
+            />
+          </List>
+
+        </SafeAreaView>
     </ScrollView>
   
   );
@@ -37,7 +87,14 @@ const CustomDrawerComponent = props =>(
       backgroundColor:globalColors.white, 
       flexDirection:"column",
       justifyContent:"flex-end",
-      marginLeft:10 }
-  })
+      marginLeft:10 },
+      text: {
+        fontWeight: Platform.OS === "ios" ? "500" : "400",
+        fontSize: 13,
+        marginLeft: 20,
+        color:'black',
+        fontWeight:'bold'
+      },
+      })
 
   export default CustomDrawerComponent;
