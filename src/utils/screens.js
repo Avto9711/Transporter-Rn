@@ -1,6 +1,7 @@
 const Screens = {
     AppStack: {
-        Home:"HomePage"
+        Home:"HomePage",
+        Profile: 'ProfilePage'
     },
     AuthStack: {
         RegistrationFormPage: 'RegistrationFormPage',
