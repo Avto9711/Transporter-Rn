@@ -8,9 +8,11 @@ import store from './src/store/store';
 import CustomDrawerComponent from './src/settings/CustomDrawerComponent'
 import DrawerRouteConfig from './src/settings/DrawerNavigationConfig'
 import RouteAuthConfig from './src/settings/RouteAuthConfig'
-
+import {AppStack} from './src/utils/screens'
 const DrawerStack = createDrawerNavigator(DrawerRouteConfig,{
-  contentComponent: CustomDrawerComponent
+  contentComponent: CustomDrawerComponent,
+  initialRouteName :AppStack.Home,
+  drawerWidth :350
 });
 
 const AuthStack =  createStackNavigator(RouteAuthConfig );

@@ -16,7 +16,6 @@ import globalColors from '../utils/colors'
 class HomeScreen extends React.Component {
     static navigationOptions = {
         title: 'Home Screen',
-        drawerIcon: ()=>    <Icon name="home"/>
     };
 
     render() {

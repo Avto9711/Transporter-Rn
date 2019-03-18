@@ -7,6 +7,7 @@ import Logo from '../components/Logo'
 
 import { connect } from 'react-redux';
 
+
 class InitialPage extends React.Component{
 
     goTo = (page)=>{
