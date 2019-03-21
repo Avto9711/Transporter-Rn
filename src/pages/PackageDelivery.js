@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, TextInput, ScrollView} from 'react-native';
+import {View, StyleSheet, TextInput, ScrollView, FlatList} from 'react-native';
 import globalColors from '../utils/colors'
 import {Header,Left,Icon, Container, Content,Body,Title,
     Right, Button, Text, Form, 
@@ -8,11 +8,18 @@ import {Header,Left,Icon, Container, Content,Body,Title,
     Label, 
     Grid,
     Col, 
-    Row, ListItem,CheckBox, Picker, Textarea, Switch} from 'native-base'
+    Row, ListItem,CheckBox, Picker, Textarea, Switch, SwipeRow,List} from 'native-base'
 class PackageDelivery extends Component{
     static navigationOptions = {
        
-    };
+    };  
+
+    constructor(props){
+        super(props)
+        this.state = {
+            data:["hola", "adios"]
+        }
+    }
 
 
     render() {
@@ -86,24 +93,24 @@ class PackageDelivery extends Component{
                         </View>
                         <View style={{flexDirection:'column', marginTop:20}}>
                         <Label>Dimension*</Label>
-                        <View style={{flexDirection:'row'}}>
-                            <View style={{ flex:1}}>
+                        <View style={{flexDirection:'row', marginTop:10}}>
+                            <View style={{ flex:5, }}>
                                     <Item regular>
                                         <Input />
                                     </Item>
                                 </View>
-                                <View style={{ flex:1}}>
+                                <View style={{ flex:1, justifyContent:'center', alignItems:'center'}}>
                                         <Text>X</Text>
                                 </View>
-                                <View style={{ flex:1}}>
+                                <View style={{ flex:5}}>
                                     <Item regular>
                                         <Input numeric />
                                     </Item>                           
                                 </View>
-                                <View style={{ flex:1}}>
+                                <View style={{ flex:1, justifyContent:'center', alignItems:'center'}}>
                                         <Text>X</Text>
                                 </View>
-                                <View style={{ flex:1}}>
+                                <View style={{ flex:5}}>
                                     <Item regular>
                                         <Input numeric />
                                     </Item>                            
@@ -111,69 +118,107 @@ class PackageDelivery extends Component{
                             </View>
 
                         </View>
+                        <View style={{marginTop:20}}>
+                            <View style={{ flex:9}}>
+                                <Item floatingLabel>
+                                    <Label>Weigth *</Label>
+                                    <Input numeric />
+
+                                </Item>
+                            </View>
+                        </View>
+                    <View style={{marginTop:20}} >
+                    
+                        <View style={{flexDirection:'row', fontSize:10}}>
+                            <Label>Pictures </Label> 
+                        </View>
+                        <View style={{flexDirection:'row', justifyContent:'space-evenly', marginTop:10}}>
+                            <View style={{backgroundColor:'red', height:100, width:100}}></View>                                               
+                            <View style={{backgroundColor:'blue', height:100, width:100}}></View>                                               
+                            <View style={{backgroundColor:'black', height:100, width:100}}></View>   
+                        </View>
+                                            
+                    </View>
+                    <View style={{marginTop:20, flexDirection:'column'}}>
+                        <Label>Referral Links <Icon type="EvilIcons" name="plus"></Icon> </Label>     
+                        <View style={{justifyContent:'space-between', flexDirection:'column', flex:1}}>
+                            <List>
+                                <FlatList
+                                    data={this.state.data}
+                                    keyExtractor={(data)=> data }
+                                    renderItem={({data})=>
+                                        <SwipeRow
+                                        rightOpenValue={-75}
+                                        right={
+                                        <Button danger onPress={() => alert("Trash")}>
+                                            <Icon active name="trash" />
+                                        </Button>
+                                        }
+                                        body={
+                                        <View style={{ flex: 1 }}>
+                                                <Item regular style={{marginBottom:2, marginTop:2}}>
+                                                    <Input />
+                                                </Item>
+                                        </View>
+                                        }
+                                    />
+                                    }
+                                />                  
+                            </List>
+
+
+{/* 
+                                                 <SwipeRow
+                                style={{ backgroundColor: "#9370DB" }}
+                                rightOpenValue={-75}
+                                right={
+                                <Button danger onPress={() => alert("Trash")}>
+                                    <Icon active name="trash" />
+                                </Button>
+                                }
+                                body={
+                                <View style={{ flex: 1 }}>
+                                        <Item regular style={{marginBottom:2, marginTop:2}}>
+                                            <Input />
+                                        </Item>
+                                </View>
+                                } */}
+                            {/* /> */}
+
+
+                            {/* <Item regular style={{marginBottom:2, marginTop:2}}>
+                                    <Input />
+                                <Icon type="EvilIcons" name="trash" ></Icon>
+                            </Item>
+                            <Item regular style={{marginBottom:2, marginTop:2}}>
+                                <Input />
+                                <Icon type="EvilIcons" name="trash" ></Icon>
+                            </Item> */}
+                        </View>
+
+
+                                                
+                    </View>
+
+                    <View style={{marginTop:20}} >
+                            <Label>Delivery Notes</Label>
+                            <Textarea  rowSpan={5} bordered />
+                                               
+                    </View>
+                    <View style={{marginTop:20, flexDirection:'row', justifyContent:'space-between'}} >
+                            <CheckBox  checked={false} />
+                            <Text style={{fontSize:15}}>Purchase Package through the app (Only on US)</Text>
+                    </View>
+
+                    <View style={{marginTop:20}} >
+                         <Button full style={{backgroundColor: globalColors.baseBlue}}><Text> Save </Text></Button>
+                    </View>
+
                     </View>
 
 
                 </ScrollView>
 
-
-                {/* <Grid  >
-                    <Row size={100}>
-                        <Col size={100}>
-                            <Row>
-                                <Col  style={{backgroundColor:'white', padding:10}} size={90}>
-                                <Item>
-                                    <Input placeholder="Delivery Location" />
-                                    <Icon active name='swap' />
-                                </Item>
-
-                                </Col>
-                                <Col style={{padding:10}} size={10}>
-                                <ListItem button >
-                                <CheckBox color="red" />
-                                    <Body>
-                                        <Text>Daily Stand Up</Text>
-                                    </Body>
-                                </ListItem>
-                                    {/* <Text  style={{position:'absolute', top:0, fontSize:10}}>Use My location</Text> */}
-                                {/* </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{backgroundColor:'green'}}></Col>
-                                <Col style={{backgroundColor:'red'}}></Col>
-                            </Row>
-                            <Row>
-                                <Col style={{backgroundColor:'black'}}></Col>
-                                <Col style={{backgroundColor:'white'}}></Col>
-                            </Row>
-                        </Col>
-                    </Row> */}
-                {/* </Grid>  */}
-
-
-
-                {/* <Grid style={{flex:1}}>
-                    <Row size={100} style={{backgroundColor:'red'}}>
-                        <Col style={{backgroundColor:'blue'}}></Col>
-                        <Col style={{backgroundColor:'green'}}></Col>
-                    </Row>
-
-                </Grid> */}
-                    {/* <View style={{padding:10}} >
-                        <Form style={{flex:1, flexDirection:'row'}} >
-                        <View >
-                            <Item stackedLabel >
-                                <Label>Username</Label>
-                                <Input />
-                            </Item>
-                            <Item stackedLabel>
-                                <Label>Password</Label>
-                                <Input />
-                            </Item>
-                        </View>
-
-                        </Form>
-                    </View> */}
 
             </Content>
             </Container>)}
