@@ -1,4 +1,6 @@
 import  HomeScreen from '../pages/HomeScreen'
+import  Profile from '../pages/Profile'
+
 import  MyRecipientsCouriers from '../pages/MyRecipientsCouriers'
 import  PackageDelivery from '../pages/PackageDelivery'
 import  RecipientsBoard from '../pages/RecipientsBoard'
@@ -14,6 +16,13 @@ import {AppStack} from '../utils/screens'
 
 
 const DrawerRouteConfig = {
+    [AppStack.Profile]: { 
+      screen: Profile,
+      drawerMenuConfig:{
+        showInDrawerMenu:true,
+        drawerMenuTitle:"Profile",
+      }
+    },
     [AppStack.Home]: { 
       screen: HomeScreen,
       drawerMenuConfig:{

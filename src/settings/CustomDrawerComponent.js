@@ -9,6 +9,7 @@ import {HrView} from '../utils/helpers'
 var datas = []
 
 for (var prop in DrawerRouteConfig){
+  
   datas.push({
       name: DrawerRouteConfig[prop].drawerMenuConfig.drawerMenuTitle,
       route: prop,
