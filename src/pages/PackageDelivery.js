@@ -8,7 +8,7 @@ import {Header,Left,Icon, Container, Content,Body,Title,
     Label, 
     Grid,
     Col, 
-    Row, ListItem,CheckBox} from 'native-base'
+    Row, ListItem,CheckBox, Picker, Textarea, Switch} from 'native-base'
 class PackageDelivery extends Component{
     static navigationOptions = {
        
@@ -34,23 +34,82 @@ class PackageDelivery extends Component{
                 </Header>
                 <Content contentContainerStyle={{flex:1, padding:10}} >
                 <ScrollView>
-                    <View style={{flex:1, flexDirection:'column'}}>
+                    <View style={{flex:1, flexDirection:'column', padding:10}}>
                         <View style={{flexDirection:'row'}}>
                             <View style={{ flex:10}}>
-                                <Item>
-                                    <Input placeholder="Delivery Location" />
+                                <Item floatingLabel>
+                                    <Label>Delivey Location</Label>
+                                    <Input />
                                     <Icon type="FontAwesome5" name="map-marker-alt"></Icon>
 
                                 </Item>
                             </View>
-                            <View style={{ flex:1,justifyContent:'center'}}>
-                                    <CheckBox checked={true} color="green"/>
+                            <View style={{ flex:1,flexDirection:'column-reverse'}}>
+                                    <Switch value={true} />
                             </View>
                         </View>
                         <View style={{marginTop:20}} >
-                            <Item>
-                                <Input placeholder="Item" />
+                            <Item floatingLabel>
+                            <Label>Item</Label>
+                                <Input placeholder="" />
                             </Item>
+                        </View>
+                        <View style={{marginTop:20, borderColor:'black'}} >
+                            {/* <Text>Type</Text> */}
+                            <Label>Select Item Type</Label>
+                            <Picker
+                                note
+                                mode="dropdown">
+                                <Picker.Item label="" value="key0" />
+                                <Picker.Item label="ATM Card" value="key1" />
+                                <Picker.Item label="Debit Card" value="key2" />
+                                <Picker.Item label="Credit Card" value="key3" />
+                                <Picker.Item label="Net Banking" value="key4" />
+                            </Picker>
+                        </View>
+                        <View style={{marginTop:20}} >
+                            <Label>Item Description</Label>
+                            <Textarea  rowSpan={5} bordered />
+                                               
+                        </View>
+                        <View style={{flexDirection:'row', marginTop:20}}>
+                            <View style={{ flex:9}}>
+                                <Item floatingLabel>
+                                    <Label>Estimated Value</Label>
+                                    <Input numeric />
+
+                                </Item>
+                            </View>
+                            <View style={{ flex:1,justifyContent:'flex-end'}}>
+                                    <Text>USD</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:'column', marginTop:20}}>
+                        <Label>Dimension*</Label>
+                        <View style={{flexDirection:'row'}}>
+                            <View style={{ flex:1}}>
+                                    <Item regular>
+                                        <Input />
+                                    </Item>
+                                </View>
+                                <View style={{ flex:1}}>
+                                        <Text>X</Text>
+                                </View>
+                                <View style={{ flex:1}}>
+                                    <Item regular>
+                                        <Input numeric />
+                                    </Item>                           
+                                </View>
+                                <View style={{ flex:1}}>
+                                        <Text>X</Text>
+                                </View>
+                                <View style={{ flex:1}}>
+                                    <Item regular>
+                                        <Input numeric />
+                                    </Item>                            
+                                </View>
+                            </View>
+
                         </View>
                     </View>
 
