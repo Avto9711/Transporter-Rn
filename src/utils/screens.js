@@ -2,6 +2,7 @@ const Screens = {
     AppStack: {
         Home:"HomePage",
         Profile: 'ProfilePage',
+        ProfileSetting: 'ProfileSetting',
         Message:"MessagePage",
         PackageDelivery: "PackageDeliveryPage",
         RecipientsBoard: "RecipientsBoardPage",

@@ -2,11 +2,13 @@ import React from 'react';
 import {StatusBar,  View, SafeAreaView,ScrollView,Dimensions, Image,StyleSheet, Text,FlatList,Platform} from 'react-native';
 import  {Icon, Badge, Text as Test, Button as RnButton, Left,List,ListItem} from 'native-base'
 import globalColors from '../utils/colors';
+import  {AppStack} from '../utils/screens'
 
 import DrawerRouteConfig from '../settings/DrawerNavigationConfig'
 import {HrView} from '../utils/helpers'
 
 var datas = []
+
 
 for (var prop in DrawerRouteConfig){
   
@@ -29,8 +31,8 @@ const CustomDrawerComponent = props =>(
           </View>
           <View style={{flex:1, flexDirection:'column', marginTop:30, marginLeft:15}}>
                 <Text style={{padding:4, fontWeight:"bold"}}>Israel Rivera</Text>
-                <Text style={{padding:4, fontWeight:"bold"}}>Profile Settings</Text>
-                <Text style={{padding:4, fontWeight:"bold"}}>Public profile view</Text>
+                <Text style={{padding:4, fontWeight:"bold"}}  onPress={() =>{ props.navigation.navigate(AppStack.ProfileSetting) }}>Profile Settings</Text>
+                <Text style={{padding:4, fontWeight:"bold"}}  onPress={() =>{ props.navigation.navigate(AppStack.Profile) }}>Public profile view</Text>
           </View>
           <View  style={{padding:20, position:'absolute', right:0}}>
           <RnButton transparent iconLeft>
