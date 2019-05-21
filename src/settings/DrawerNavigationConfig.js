@@ -10,6 +10,7 @@ import  TransporterBoard from '../pages/TransporterBoard'
 import  Messages from '../pages/Messages'
 import  PrivacyAndTerms from '../pages/PrivacyAndTerms'
 import  Settings from '../pages/Settings'
+import  ProfileSetting from '../pages/ProfileSetting'
 
 
 import {AppStack} from '../utils/screens'
@@ -19,8 +20,15 @@ const DrawerRouteConfig = {
     [AppStack.Profile]: { 
       screen: Profile,
       drawerMenuConfig:{
-        showInDrawerMenu:true,
+        showInDrawerMenu:false,
         drawerMenuTitle:"Profile",
+      }
+    },
+    [AppStack.ProfileSetting]: { 
+      screen: ProfileSetting,
+      drawerMenuConfig:{
+        showInDrawerMenu:false,
+        drawerMenuTitle:"Profile Setting",
       }
     },
     [AppStack.Home]: { 
