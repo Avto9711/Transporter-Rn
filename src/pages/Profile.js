@@ -78,14 +78,14 @@ import { connect } from 'react-redux';
                       </View>
           
                   </Row>
-                  <Divider style={{ height:1, backgroundColor: 'gray', marginHorizontal: 15  }} />
+                  <Divider style={{ height:1, backgroundColor: '#cecece', marginHorizontal: 15  }} />
                   <Row  style={{ height: 130, marginVertical: 10}}> 
                       <View style={{marginVertical: 10, flex:1, marginHorizontal: 10 }}>
-                        <Text style={{fontWeight: 'bold', fontSize: 20}}>Positive reviews</Text>
-                        <Text style={{ fontSize: 15}}>Base on 3 deliveries</Text>
+                        <Text style={{fontWeight: '500', fontSize: 20}}>Positive reviews - <Text style={{ fontSize: 15}}>Base on 3 deliveries</Text></Text>
+                       
                         <View style={{flex: 1, flexDirection: 'row',  justifyContent:'space-between'}}>
                           <View style={{ marginVertical: 20}}>
-                            <Badge info  style={{height: 50, width: 170,  flexDirection: 'row', justifyContent:'space-between'}}>
+                            <Badge info  style={{height: 50, width: 200,  flexDirection: 'row', justifyContent:'space-between'}}>
                               <Text style={{marginVertical: 10}}>Responsible</Text>
                               <Badge primary style={{alignSelf: 'center'}}>
                                   <Text>2</Text>
@@ -94,7 +94,7 @@ import { connect } from 'react-redux';
                             </Badge>
                           </View>
                           <View style={{ marginVertical: 20}}>
-                            <Badge info  style={{height: 50, width: 180,  flexDirection: 'row'}}>
+                            <Badge info  style={{height: 50, width: 200, justifyContent:'space-between',  flexDirection: 'row'}}>
                               <Text style={{marginVertical: 10}}>Good Comunication</Text>
                               <Badge primary style={{alignSelf: 'center'}}>
                                   <Text>1</Text>
@@ -107,10 +107,10 @@ import { connect } from 'react-redux';
                         
                       </View>
                   </Row>
-                  <Divider style={{ height:1, backgroundColor: 'gray', marginHorizontal: 15 , marginVertical: 15  }} />
+                  <Divider style={{ height:1, backgroundColor: '#cecece', marginHorizontal: 15 , marginBottom: 15  }} />
                   <Row  > 
                       <View style={{marginVertical: 10, flex:1, marginHorizontal: 10 }}>
-                        <Text style={{fontWeight: 'bold', fontSize: 20}}>Recipients</Text>
+                        <Text style={{fontWeight: '500', fontSize: 20}}>Recipients</Text>
 
 
                           <List>
