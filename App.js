@@ -12,8 +12,8 @@ import {AppStack} from './src/utils/screens'
 const DrawerStack = createDrawerNavigator(DrawerRouteConfig,{
   contentComponent: CustomDrawerComponent,
   initialRouteName :AppStack.Home,
-  drawerWidth :350,
-  initialRouteName:"PackageDeliveryPage"
+  drawerWidth :380,
+  initialRouteName:AppStack.RecipientsBoard
 });
 
 const AuthStack =  createStackNavigator(RouteAuthConfig );

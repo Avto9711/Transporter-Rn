@@ -84,8 +84,8 @@ import { connect } from 'react-redux';
                         <Text style={{fontWeight: '500', fontSize: 20}}>Positive reviews - <Text style={{ fontSize: 15}}>Base on 3 deliveries</Text></Text>
                        
                         <View style={{flex: 1, flexDirection: 'row',  justifyContent:'space-between'}}>
-                          <View style={{ marginVertical: 20}}>
-                            <Badge info  style={{height: 50, width: 200,  flexDirection: 'row', justifyContent:'space-between'}}>
+                          <View style={{ marginVertical: 20, margin:3}}>
+                            <Badge info  style={{height: 50, width: 180,  flexDirection: 'row', justifyContent:'space-between'}}>
                               <Text style={{marginVertical: 10}}>Responsible</Text>
                               <Badge primary style={{alignSelf: 'center'}}>
                                   <Text>2</Text>
@@ -93,8 +93,8 @@ import { connect } from 'react-redux';
 
                             </Badge>
                           </View>
-                          <View style={{ marginVertical: 20}}>
-                            <Badge info  style={{height: 50, width: 200, justifyContent:'space-between',  flexDirection: 'row'}}>
+                          <View style={{ marginVertical: 20, margin:5}} >
+                            <Badge info  style={{height: 50, width: 180, justifyContent:'space-between',  flexDirection: 'row'}}>
                               <Text style={{marginVertical: 10}}>Good Comunication</Text>
                               <Badge primary style={{alignSelf: 'center'}}>
                                   <Text>1</Text>
