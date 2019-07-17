@@ -13,7 +13,7 @@ const DrawerStack = createDrawerNavigator(DrawerRouteConfig,{
   contentComponent: CustomDrawerComponent,
   initialRouteName :AppStack.Home,
   drawerWidth :380,
-  initialRouteName:AppStack.RecipientsBoard
+  initialRouteName:AppStack.Home
 });
 
 const AuthStack =  createStackNavigator(RouteAuthConfig );

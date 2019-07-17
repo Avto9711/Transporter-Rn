@@ -241,8 +241,6 @@ function renderRecipientItem({item}){
                         </Badge>
                     </View>
                         <Text style={{color:'gray', }}>1d ago</Text>
-
-                            
                     </View>
                 </View>
             </View>)
