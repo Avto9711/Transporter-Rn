@@ -41,6 +41,7 @@ import {
 } from "native-base";
 
 import { Divider, SearchBar } from "react-native-elements";
+import Sidebar from "react-native-sidebar";
 
 function renderItemReferralLink(item, deleteReferralinkItem) {
   return (
@@ -78,6 +79,16 @@ class RecipientsBoard extends Component {
       searchMode: false,
       isLoading: false,
       search: "",
+      productTypes: [
+        { name: "Select item type", id: 0 },
+        { name: "Videogames", id: 1 },
+        { name: "CellPhones", id: 2 }
+      ],
+      countries: [
+        { name: "Select country", id: 0 },
+        { name: "Domininican Rep.", id: 1 },
+        { name: "United States", id: 2 }
+      ],
       items: [
         {
           itemId: 1,
@@ -174,6 +185,7 @@ class RecipientsBoard extends Component {
     };
     this.deleteReferralinkItem = this.deleteReferralinkItem.bind(this);
     this.searchBar = React.createRef();
+    this._drawer = React.createRef();
   }
 
   updateSearch = search => {
@@ -231,68 +243,224 @@ class RecipientsBoard extends Component {
     const { search } = this.state;
 
     return (
-      <Container style={{ flex: 1 }}>
-        {this.state.searchMode && (
+      <Sidebar
+        ref={ref => (this._drawer = ref)}
+        rightSidebar={
+          <Container>
+            <Header
+              style={{ backgroundColor: globalColors.baseBlue }}
+              androidStatusBarColor={globalColors.baseBlue}
+            >
+              <Left>
+                <Button
+                  onPress={() => {
+                    this._drawer.open(false);
+                  }}
+                  transparent
+                >
+                  <Icon type="AntDesign" name="arrowleft" />
+                </Button>
+              </Left>
+              <Body>
+                <Title>Filters</Title>
+              </Body>
+              <Right>
+                <Button
+                  onPress={() => {
+                    this._drawer.open(false);
+                  }}
+                  transparent
+                >
+                  <Text>Done</Text>
+                </Button>
+              </Right>
+            </Header>
+            <Content contentContainerStyle={{ flex: 1, flexDirection: 'column', justifyContent:"space-between"}}>
+              <View style={{ padding: 10, marginTop: 20 }}>
+                <Label>Sizes</Label>
+                <ListItem>
+                  <CheckBox checked={true} />
+                  <Body>
+                    <Text>Small</Text>
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <CheckBox checked={true} />
+                  <Body>
+                    <Text>Medium</Text>
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <CheckBox checked={false} />
+                  <Body>
+                    <Text>Large</Text>
+                  </Body>
+                </ListItem>
+              </View>
+              <View style={{ padding: 10 }}>
+                <Label>Country to deliver</Label>
+                <Picker note mode="dropdown">
+                  {this.state.countries.map(item => (
+                    <Picker.Item
+                      key={item.id}
+                      label={item.name}
+                      value={item.id}
+                    />
+                  ))}
+                </Picker>
+              </View>
+              <View style={{ padding: 10 }}>
+                <Label>Types</Label>
+                <Picker note mode="dropdown">
+                  {this.state.productTypes.map(item => (
+                    <Picker.Item
+                      key={item.id}
+                      label={item.name}
+                      value={item.id}
+                    />
+                  ))}
+                </Picker>
+              </View>
+              <View style={{ padding: 10 }}>
+                <Label>Price Range</Label>
+                <View style={{ flexDirection: "row", marginTop: 10 }}>
+                  <View style={{ flex: 4 }}>
+                    <Item regular>
+                      <Input name="width" numeric keyboardType="numeric" />
+                    </Item>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    <Text>To</Text>
+                  </View>
+                  <View style={{ flex: 4 }}>
+                    <Item regular>
+                      <Input name="height" keyboardType="numeric" numeric />
+                    </Item>
+                  </View>
+                </View>
+              </View>
+              <View style={{ padding: 10, marginBottom: 20}}>
+                <Label>Weight</Label>
+                <View style={{ flexDirection: "row", marginTop: 10 }}>
+                  <View style={{ flex: 7 }}>
+                    <Item regular>
+                      <Input name="width" numeric keyboardType="numeric" />
+                    </Item>
+                  </View>
+                  <View
+                    style={{
+                      flex: 4,
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    <Text>Pound(s)</Text>
+                  </View>
+                </View>
+              </View>
+            </Content>
+          </Container>
+        }
+        style={{ flex: 1 }}
+      >
+        <Container style={{ flex: 1 }}>
+          {this.state.searchMode && (
             <View>
-          <SearchBar
-            ref={searchBar => (this.searchBar = searchBar)}
-            placeholder="Buscar..."
-            onChangeText={this.updateSearch}
-            value={search}
-            lightTheme={true}
-            inputContainerStyle={{ backgroundColor: "#fff"}}
-            showLoading={this.state.isLoading}
-            platform={"android"}
-            onCancel={() => {
-              this.setState({ searchMode: false });
-            }}
-            onClear={() => {
-              this.searchBar.focus();
-            }}
-          />
-          <Divider style={{ height:1, backgroundColor: '#cecece'  }} />
-          </View>
-        )}
-        {!this.state.searchMode && (
-          <Header
-            style={{ backgroundColor: globalColors.baseBlue }}
-            androidStatusBarColor={globalColors.baseBlue}
-          >
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.openDrawer()}
-              >
-                <Icon name="ios-menu" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>{search || "Recipients Board"} </Title>
-            </Body>
-            <Right>
-              <Button
-                onPress={() => {
-                  this.setState({ searchMode: true });
-                  setTimeout(() => {
-                    this.searchBar.focus();
-                  }, 50);
+              <SearchBar
+                ref={searchBar => (this.searchBar = searchBar)}
+                placeholder="Buscar..."
+                onChangeText={this.updateSearch}
+                value={search}
+                lightTheme={true}
+                inputContainerStyle={{ backgroundColor: "#fff" }}
+                showLoading={this.state.isLoading}
+                platform={"android"}
+                onCancel={() => {
+                  this.setState({ searchMode: false });
                 }}
-                transparent
+                onClear={() => {
+                  this.searchBar.focus();
+                }}
+                onBlur={() => {
+                  this.setState({ searchMode: false });
+                }}
+              />
+              <Divider style={{ height: 1, backgroundColor: "#cecece" }} />
+            </View>
+          )}
+          {!this.state.searchMode && (
+            <Header
+              style={{ backgroundColor: globalColors.baseBlue }}
+              androidStatusBarColor={globalColors.baseBlue}
+            >
+              <Left>
+                <Button
+                  transparent
+                  onPress={() => this.props.navigation.openDrawer()}
+                >
+                  <Icon name="ios-menu" />
+                </Button>
+              </Left>
+              <Body>
+                <Title>{search || "Recipients Board"} </Title>
+              </Body>
+              <Right>
+                <Button
+                  onPress={() => {
+                    this.setState({ searchMode: true });
+                    setTimeout(() => {
+                      this.searchBar.focus();
+                    }, 50);
+                  }}
+                  transparent
+                >
+                  <Icon name="search" />
+                </Button>
+              </Right>
+            </Header>
+          )}
+          <Content contentContainerStyle={{ flex: 1, padding: 10 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginHorizontal: 15,
+                marginBottom: 10
+              }}
+            >
+              <Text note>1,234 resultados</Text>
+              <Text
+                onPress={() => {
+                  this._drawer.open("right");
+                }}
+                style={{ color: globalColors.baseBlue }}
               >
-                <Icon name="search" />
-              </Button>
-            </Right>
-          </Header>
-        )}
-        <Content contentContainerStyle={{ flex: 1, padding: 10 }}>
-          <ScrollView>
-            <FlatList
-              keyExtractor={this._keyExtractor}
-              data={this.state.items}
-              renderItem={renderRecipientItem}
-              ItemSeparatorComponent={Divider}
+                Filtrar
+              </Text>
+            </View>
+            <Divider
+              style={{
+                height: 1,
+                backgroundColor: "#cecece",
+                marginHorizontal: 0,
+                marginBottom: 10
+              }}
             />
-            {/* <View style={{flex:1, flexDirection:'column'}}>
+
+            <ScrollView>
+              <FlatList
+                keyExtractor={this._keyExtractor}
+                data={this.state.items}
+                renderItem={renderRecipientItem}
+                ItemSeparatorComponent={Divider}
+              />
+              {/* <View style={{flex:1, flexDirection:'column'}}>
 
                         {(this.state.items.map(item=>{
 
@@ -301,9 +469,10 @@ class RecipientsBoard extends Component {
 
             
                         </View> */}
-          </ScrollView>
-        </Content>
-      </Container>
+            </ScrollView>
+          </Content>
+        </Container>
+      </Sidebar>
     );
   }
 }
@@ -371,6 +540,9 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     backgroundColor: "#fff",
     color: "#424242"
+  },
+  resulText: {
+    color: "rgba(255,255,255,0.6)"
   }
 });
 
