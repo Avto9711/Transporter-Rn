@@ -238,6 +238,154 @@ class RecipientsBoard extends Component {
       { cancelable: false }
     );
   };
+  rightSidebar = () => {
+    return (
+      <Container>
+        <Header
+          style={{ backgroundColor: globalColors.baseBlue }}
+          androidStatusBarColor={globalColors.baseBlue}
+        >
+          <Left>
+            <Button
+              onPress={() => {
+                this._drawer.open(false);
+              }}
+              transparent
+            >
+              <Icon type="AntDesign" name="arrowleft" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Filters</Title>
+          </Body>
+          <Right>
+            <Button
+              onPress={() => {
+                this._drawer.open(false);
+              }}
+              transparent
+            >
+              <Text>Done</Text>
+            </Button>
+          </Right>
+        </Header>
+        <Content
+          contentContainerStyle={{
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "space-between"
+          }}
+        >
+          <View style={{ padding: 10, marginTop: 20 }}>
+            <Label>Sizes</Label>
+            <ListItem>
+              <CheckBox checked={true} />
+              <Body>
+                <Text>Small</Text>
+              </Body>
+            </ListItem>
+            <ListItem>
+              <CheckBox checked={true} />
+              <Body>
+                <Text>Medium</Text>
+              </Body>
+            </ListItem>
+            <ListItem>
+              <CheckBox checked={false} />
+              <Body>
+                <Text>Large</Text>
+              </Body>
+            </ListItem>
+          </View>
+          <View style={{ padding: 10 }}>
+            <Label>Country to deliver</Label>
+            <Picker note mode="dropdown">
+              {this.state.countries.map(item => (
+                <Picker.Item key={item.id} label={item.name} value={item.id} />
+              ))}
+            </Picker>
+          </View>
+          <View style={{ padding: 10 }}>
+            <Label>Types</Label>
+            <Picker note mode="dropdown">
+              {this.state.productTypes.map(item => (
+                <Picker.Item key={item.id} label={item.name} value={item.id} />
+              ))}
+            </Picker>
+          </View>
+          <View style={{ padding: 10 }}>
+            <Label>Price Range</Label>
+            <View style={{ flexDirection: "row", marginTop: 10 }}>
+              <View style={{ flex: 4 }}>
+                <Item regular>
+                  <Input name="width" numeric keyboardType="numeric" />
+                </Item>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Text>To</Text>
+              </View>
+              <View style={{ flex: 4 }}>
+                <Item regular>
+                  <Input name="height" keyboardType="numeric" numeric />
+                </Item>
+              </View>
+            </View>
+          </View>
+          <View style={{ padding: 10, marginBottom: 20 }}>
+            <Label>Weight</Label>
+            <View style={{ flexDirection: "row", marginTop: 10 }}>
+              <View style={{ flex: 7 }}>
+                <Item regular>
+                  <Input name="width" numeric keyboardType="numeric" />
+                </Item>
+              </View>
+              <View
+                style={{
+                  flex: 4,
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Text>Pound(s)</Text>
+              </View>
+            </View>
+          </View>
+        </Content>
+      </Container>
+    );
+  };
+  searchBar = () => {
+    return (
+      <View>
+        <SearchBar
+          ref={searchBar => (this.searchBar = searchBar)}
+          placeholder="Buscar..."
+          onChangeText={this.updateSearch}
+          value={search}
+          lightTheme={true}
+          inputContainerStyle={{ backgroundColor: "#fff" }}
+          showLoading={this.state.isLoading}
+          platform={"android"}
+          onCancel={() => {
+            this.setState({ searchMode: false });
+          }}
+          onClear={() => {
+            this.searchBar.focus();
+          }}
+          onBlur={() => {
+            this.setState({ searchMode: false });
+          }}
+        />
+        <Divider style={{ height: 1, backgroundColor: "#cecece" }} />
+      </View>
+    );
+  };
 
   render() {
     const { search } = this.state;
@@ -245,155 +393,11 @@ class RecipientsBoard extends Component {
     return (
       <Sidebar
         ref={ref => (this._drawer = ref)}
-        rightSidebar={
-          <Container>
-            <Header
-              style={{ backgroundColor: globalColors.baseBlue }}
-              androidStatusBarColor={globalColors.baseBlue}
-            >
-              <Left>
-                <Button
-                  onPress={() => {
-                    this._drawer.open(false);
-                  }}
-                  transparent
-                >
-                  <Icon type="AntDesign" name="arrowleft" />
-                </Button>
-              </Left>
-              <Body>
-                <Title>Filters</Title>
-              </Body>
-              <Right>
-                <Button
-                  onPress={() => {
-                    this._drawer.open(false);
-                  }}
-                  transparent
-                >
-                  <Text>Done</Text>
-                </Button>
-              </Right>
-            </Header>
-            <Content contentContainerStyle={{ flex: 1, flexDirection: 'column', justifyContent:"space-between"}}>
-              <View style={{ padding: 10, marginTop: 20 }}>
-                <Label>Sizes</Label>
-                <ListItem>
-                  <CheckBox checked={true} />
-                  <Body>
-                    <Text>Small</Text>
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <CheckBox checked={true} />
-                  <Body>
-                    <Text>Medium</Text>
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <CheckBox checked={false} />
-                  <Body>
-                    <Text>Large</Text>
-                  </Body>
-                </ListItem>
-              </View>
-              <View style={{ padding: 10 }}>
-                <Label>Country to deliver</Label>
-                <Picker note mode="dropdown">
-                  {this.state.countries.map(item => (
-                    <Picker.Item
-                      key={item.id}
-                      label={item.name}
-                      value={item.id}
-                    />
-                  ))}
-                </Picker>
-              </View>
-              <View style={{ padding: 10 }}>
-                <Label>Types</Label>
-                <Picker note mode="dropdown">
-                  {this.state.productTypes.map(item => (
-                    <Picker.Item
-                      key={item.id}
-                      label={item.name}
-                      value={item.id}
-                    />
-                  ))}
-                </Picker>
-              </View>
-              <View style={{ padding: 10 }}>
-                <Label>Price Range</Label>
-                <View style={{ flexDirection: "row", marginTop: 10 }}>
-                  <View style={{ flex: 4 }}>
-                    <Item regular>
-                      <Input name="width" numeric keyboardType="numeric" />
-                    </Item>
-                  </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                  >
-                    <Text>To</Text>
-                  </View>
-                  <View style={{ flex: 4 }}>
-                    <Item regular>
-                      <Input name="height" keyboardType="numeric" numeric />
-                    </Item>
-                  </View>
-                </View>
-              </View>
-              <View style={{ padding: 10, marginBottom: 20}}>
-                <Label>Weight</Label>
-                <View style={{ flexDirection: "row", marginTop: 10 }}>
-                  <View style={{ flex: 7 }}>
-                    <Item regular>
-                      <Input name="width" numeric keyboardType="numeric" />
-                    </Item>
-                  </View>
-                  <View
-                    style={{
-                      flex: 4,
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                  >
-                    <Text>Pound(s)</Text>
-                  </View>
-                </View>
-              </View>
-            </Content>
-          </Container>
-        }
+        rightSidebar={this.rightSidebar()}
         style={{ flex: 1 }}
       >
         <Container style={{ flex: 1 }}>
-          {this.state.searchMode && (
-            <View>
-              <SearchBar
-                ref={searchBar => (this.searchBar = searchBar)}
-                placeholder="Buscar..."
-                onChangeText={this.updateSearch}
-                value={search}
-                lightTheme={true}
-                inputContainerStyle={{ backgroundColor: "#fff" }}
-                showLoading={this.state.isLoading}
-                platform={"android"}
-                onCancel={() => {
-                  this.setState({ searchMode: false });
-                }}
-                onClear={() => {
-                  this.searchBar.focus();
-                }}
-                onBlur={() => {
-                  this.setState({ searchMode: false });
-                }}
-              />
-              <Divider style={{ height: 1, backgroundColor: "#cecece" }} />
-            </View>
-          )}
+          {this.state.searchMode && this.searchBar()}
           {!this.state.searchMode && (
             <Header
               style={{ backgroundColor: globalColors.baseBlue }}
