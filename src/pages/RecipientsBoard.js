@@ -360,7 +360,8 @@ class RecipientsBoard extends Component {
       </Container>
     );
   };
-  searchBar = () => {
+  searchBarComponent = (search) => {
+
     return (
       <View>
         <SearchBar
@@ -397,7 +398,7 @@ class RecipientsBoard extends Component {
         style={{ flex: 1 }}
       >
         <Container style={{ flex: 1 }}>
-          {this.state.searchMode && this.searchBar()}
+          {this.state.searchMode && this.searchBarComponent(search)}
           {!this.state.searchMode && (
             <Header
               style={{ backgroundColor: globalColors.baseBlue }}
