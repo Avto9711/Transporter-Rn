@@ -9,7 +9,6 @@ import {Header,Left,Icon, Container, Content,Body,Title,
     Input, 
     Label, Switch, DatePicker, Picker, Textarea} from 'native-base'
 
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { Divider} from 'react-native-elements';
 class Trip extends Component{
     static navigationOptions = {
@@ -19,9 +18,20 @@ class Trip extends Component{
     constructor(props){
         super(props);
         this.state = {
-            date: new Date('2020-06-12T14:42:42'),
-            mode: 'date',
-            show: true,        
+            willingBringItems:[
+                {
+                itemId:1,
+                itemName:'Play Station 4',
+                categoryId:1,
+                categoryName:'VideoGames',
+                itemDescription:'A gaming console',
+                dimensions:{
+                    width:"50",
+                    height:"25",
+                    deep:"6"
+                },
+                itemWeight:"8"
+            }]     
         }
 
     }
@@ -35,19 +45,10 @@ class Trip extends Component{
         });
       }
     
-      show = mode => {
+      onValueChange2(value) {
         this.setState({
-          show: true,
-          mode,
+          selected2: value
         });
-      }
-    
-      datepicker = () => {
-        this.show('date');
-      }
-    
-      timepicker = () => {
-        this.show('time');
       }
 
     render(){   
@@ -92,100 +93,66 @@ class Trip extends Component{
                                 </Item>
                             </View>
                             <View style={{marginTop:20}} >
-                            <View>
-                                <Button onPress={this.datepicker} title="Show date picker!" />
+                                <Label style={{marginBottom:15}}>Time of arrival</Label>
+
+                                <View style={{flexDirection:'row'}}>
+                                    <View style={{ flex:5 }}>
+                                    <Label>Hour</Label>
+
+                                        <Item regular>
+                                            <Input  name="Hour" onChangeText={console.log("d")} value={"13"} numeric keyboardType='numeric' />
+                                        </Item>
+                                    </View>
+                                    <View style={{ flex:1,alignItems:'center',justifyContent:'center' }}>
+                                            <Text style={{fontSize:20, fontWeight:'bold'}}>:</Text>
+                                    </View>
+
+                                    <View style={{ flex:5}}>
+                                    <Label>Minutes</Label>
+
+                                        <Item regular >
+                                            <Input name="Minutes" onChangeText={console.log("d")}  keyboardType='numeric' value={"30"} numeric />
+                                        </Item>                           
+                                    </View>
+
                                 </View>
-                                <View>
-                                <Button onPress={this.timepicker} title="Show time picker!" />
-                                </View>
-                                                { this.state.show && <DateTimePicker value={this.state.date}
-                                                            mode={this.state.mode}
-                                                            is24Hour={true}
-                                                            display="default"
-                                                            onChange={this.setDate} />
-                                                }
-                                
+                                <Divider style={{marginTop:15}}/>
+
+                                    {/* <Input placeholder="" /> */}
+
                             </View>
+
                             <View style={{marginTop:20}}>
+
+
                                 <Text style={{alignSelf:'flex-start',position:'absolute', fontWeight:'bold'}}>Willing to bring</Text>
                                 <Icon style={{alignSelf:'flex-end'}} onPress={console.log(5)} type="EvilIcons" name="plus"></Icon>
-                                <Divider style={{marginTop:5}}/>
                             </View>
 
+                            <View style={{marginTop:20}}>
+                                    {this.state.willingBringItems.map((itemWiling,index)=> 
+                                    <View key={index} style={{
+                                    borderColor:'#cecece', 
+                                    borderWidth:1, 
+                                    padding:10,
+                                    borderRadius:3,
+                                    paddingBottom:15,
+                                    elevation:1.5,
+                                    shadowOffset: { width: 5, height: 5 },
+                                    shadowColor: "grey",
+                                    shadowOpacity: 1,
+                                    shadowRadius: 10,
+                                    }}>
+                                        <WillingToBringItem  item={itemWiling} number={(index + 1)}/>
+                                    </View>
+                                    )}
+                                <Divider style={{marginTop:15}}/>
 
-                            <View style={{marginTop:20}} >
-                              <Item floatingLabel>
-                            <Label>Item</Label>
-                                <Input placeholder="" />
-                            </Item>
-                        </View>
-                        <View style={{marginTop:20, borderColor:'black'}} >
-                            {/* <Text>Type</Text> */}
-                            {/* <Label>Select Item Type</Label> */}
-                            <Picker
-                                note
-                                mode="dropdown"
-                                selectedValue={this.state.selectedItemType}
-                                onValueChange={this.onItemTypeValueChange}>
-                                    {/* {this.state.itemTypes.map(item=> <Picker.Item key={item.id} label={item.name} value={item.id} /> )} */}
-                                
-                                <Picker.Item label="ATM Card" value="key1" />
-                                <Picker.Item label="Debit Card" value="key2" />
-                                <Picker.Item label="Credit Card" value="key3" />
-                                <Picker.Item label="Net Banking" value="key4" /> 
-                            </Picker>
-                        </View>
-                        <View style={{marginTop:20}} >
-                            <Label>Item Description</Label>
-                            <Textarea 
-                            value={this.state.itemDescription} 
-                            onChangeText={console.log(4)} 
-                            rowSpan={5} bordered />
-                                               
-                        </View>
-                        <View style={{flexDirection:'column', marginTop:20}}>
-                        <Label>Dimension*</Label>
-                        <View style={{flexDirection:'row', marginTop:10}}>
-                            <View style={{ flex:5, }}>
-                                    <Item regular>
-                                        <Input  name="width" onChangeText={console.log("d")} value={6} numeric keyboardType='numeric' />
-                                    </Item>
-                                </View>
-                                <View style={{ flex:1, justifyContent:'center', alignItems:'center'}}>
-                                        <Text>X</Text>
-                                </View>
-                                <View style={{ flex:5}}>
-                                    <Item regular>
-                                        <Input name="height" onChangeText={console.log("d")}  keyboardType='numeric' value={6} numeric />
-                                    </Item>                           
-                                </View>
-                                <View style={{ flex:1, justifyContent:'center', alignItems:'center'}}>
-                                        <Text>X</Text>
-                                </View>
-                                <View style={{ flex:5}}>
-                                    <Item regular>
-                                        <Input name="deep" onChangeText={console.log("d")} keyboardType='numeric' value={6}/>
-                                    </Item>
-                                </View>
                             </View>
 
-                        </View>
-                        <View style={{marginTop:20}}>
-                            <View style={{ flex:9}}>
-                                <Item floatingLabel>
-                                    <Label>Weigth *</Label>
-                                    <Input keyboardType='numeric' value={5}  numeric />
-
-                                </Item>
-                            </View>
-                        </View>
-                        
                             <View style={{marginTop:20}} >
                                 <Button onPress={this.showAlert} full style={{backgroundColor: globalColors.baseBlue}}><Text> Save </Text></Button>
                             </View>
-                        <View style={{marginTop:20}}>
-                                <Divider style={{marginTop:5}}/>
-                        </View>                          
                     </View>
                     </ScrollView>
                 </Content>
@@ -194,6 +161,73 @@ class Trip extends Component{
         )
 
     }
+}
+
+function WillingToBringItem({item, number}){
+    return (
+        <React.Fragment>
+                <View style={{marginTop:20}} >
+                                    <Text style={{position:'absolute', right:2}}>{number}</Text>
+                    <Item floatingLabel>
+                    <Label>Item</Label>
+                    <Input value={item.itemName} placeholder="" />
+                    </Item>
+                </View>
+                <View style={{marginTop:20, borderColor:'black'}} >
+
+                    <Picker
+                        note
+                        mode="dropdown">
+                            {/* {this.state.itemTypes.map(item=> <Picker.Item key={item.id} label={item.name} value={item.id} /> )} */}
+                        
+                        <Picker.Item label="Video Games" value="key1" />
+                        <Picker.Item label="Cellphones" value="key2" />
+                    </Picker>
+                </View>
+                <View style={{marginTop:20}} >
+                    <Label>Item Description</Label>
+                    <Textarea 
+                    value={item.itemDescription} 
+                    onChangeText={console.log(4)} 
+                    rowSpan={3} bordered />
+                                    
+                    </View>
+            <View style={{flexDirection:'column', marginTop:20}}>
+                <Label>Dimension*</Label>
+                <View style={{flexDirection:'row', marginTop:10}}>
+                    <View style={{ flex:5, }}>
+                        <Item regular>
+                            <Input  name="width" onChangeText={console.log("d")} value={item.dimensions.width} numeric keyboardType='numeric' />
+                        </Item>
+                    </View>
+                    <View style={{ flex:1, justifyContent:'center', alignItems:'center'}}>
+                        <Text>X</Text>
+                    </View>
+                    <View style={{ flex:5}}>
+                    <Item regular>
+                        <Input name="height" onChangeText={console.log("d")}  keyboardType='numeric' value={item.dimensions.height} numeric />
+                    </Item>                           
+                    </View>
+                    <View style={{ flex:1, justifyContent:'center', alignItems:'center'}}>
+                        <Text>X</Text>
+                    </View>
+                    <View style={{ flex:5}}>
+                        <Item regular>
+                            <Input name="deep" onChangeText={console.log("d")} keyboardType='numeric' value={item.dimensions.deep}/>
+                        </Item>
+                    </View>
+                </View>
+            </View>
+            <View style={{marginTop:20}}>
+                <View style={{ flex:9}}>
+                    <Item floatingLabel>
+                        <Label>Weigth *</Label>
+                        <Input keyboardType='numeric' value={item.itemWeight}  numeric />
+
+                    </Item>
+                </View>
+            </View>
+        </React.Fragment>);
 }
 
 export default Trip
