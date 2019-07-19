@@ -31,9 +31,52 @@ class Trip extends Component{
                     deep:"6"
                 },
                 itemWeight:"8"
-            }]     
+            },
+            {
+                itemId:2,
+                itemName:'Play Station 5',
+                categoryId:1,
+                categoryName:'VideoGames',
+                itemDescription:'A gaming console',
+                dimensions:{
+                    width:"50",
+                    height:"25",
+                    deep:"6"
+                },
+                itemWeight:"8"
+            }
+        ]     
         }
+        this.removeItem = this.removeItem.bind(this);
 
+    }
+    insertItemBring(){
+        //When using React, you should never mutate the state directly. 
+        //If an object (or Array, which is an object too) is changed, you should create a new copy.
+        const {willingBringItems } = this.state;
+        this.setState(state  => ({
+            willingBringItems:  [ {itemId:willingBringItems.length + 1,
+                itemName:null,
+                categoryId:null,
+                categoryName:null,
+                itemDescription:null,
+                dimensions:{
+                    width:"0",
+                    height:"0",
+                    deep:"0"
+                },
+                itemWeight:null
+            }, ...willingBringItems]
+        }));
+    }
+    removeItem(itemId){
+        debugger;
+                //When using React, you should never mutate the state directly. 
+        //If an object (or Array, which is an object too) is changed, you should create a new copy.
+        const {willingBringItems } = this.state;
+        this.setState(state  => ({
+            willingBringItems:  willingBringItems.filter(x=> x.itemId != itemId )
+        }));
     }
 
     setDate = (event, date) => {
@@ -115,7 +158,7 @@ class Trip extends Component{
                                         </Item>                           
                                     </View>
 
-                                </View>
+                                </View> 
                                 <Divider style={{marginTop:15}}/>
 
                                     {/* <Input placeholder="" /> */}
@@ -126,7 +169,7 @@ class Trip extends Component{
 
 
                                 <Text style={{alignSelf:'flex-start',position:'absolute', fontWeight:'bold'}}>Willing to bring</Text>
-                                <Icon style={{alignSelf:'flex-end'}} onPress={console.log(5)} type="EvilIcons" name="plus"></Icon>
+                                <Icon style={{alignSelf:'flex-end'}} onPress={this.insertItemBring.bind(this)} type="EvilIcons" name="plus"></Icon>
                             </View>
 
                             <View style={{marginTop:20}}>
@@ -142,7 +185,10 @@ class Trip extends Component{
                                     shadowColor: "grey",
                                     shadowOpacity: 1,
                                     shadowRadius: 10,
+                                    marginTop:8
                                     }}>
+                                    <Text onPress={()=>{this.removeItem(itemWiling)}} style={{textAlign:'center', fontWeight:'bold',position:'absolute',color:'white', borderRadius:50, width:25,height:25, backgroundColor:'red', left:-8,top:-10}}>X</Text>
+
                                         <WillingToBringItem  item={itemWiling} number={(index + 1)}/>
                                     </View>
                                     )}
