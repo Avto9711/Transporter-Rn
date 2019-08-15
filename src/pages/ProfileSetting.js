@@ -17,8 +17,6 @@ class ProfileSetting extends React.Component {
 
   }
 
-
-
   ratingCompleted = (rating) => {
     this.setState({ _rating: rating });
   }
