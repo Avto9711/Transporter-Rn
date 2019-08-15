@@ -183,7 +183,6 @@ class RecipientsBoard extends Component {
         }
       ]
     };
-    this.deleteReferralinkItem = this.deleteReferralinkItem.bind(this);
     this.searchBar = React.createRef();
     this._drawer = React.createRef();
   }
@@ -196,48 +195,10 @@ class RecipientsBoard extends Component {
     }, 1000);
   };
 
-  insertImage = imageNumber => {
-    ImagePicker.openCamera({
-      width: 300,
-      height: 400,
-      cropping: true
-    }).then(image => {
-      console.log(image);
-      this.setState(state => ({
-        ["Image" + imageNumber]: image.path
-      }));
-    });
-  };
-  deleteReferralinkItem(itemId) {
-    //When using React, you should never mutate the state directly.
-    //If an object (or Array, which is an object too) is changed, you should create a new copy.
-    const { referralLinks } = this.state;
-    this.setState(state => ({
-      referralLinks: referralLinks.filter(x => x.itemId != itemId)
-    }));
-  }
 
   componentWillUpdate(nextProps, nextState) {}
 
-  showAlert = () => {
-    Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
-      [
-        {
-          text: "Ask me later",
-          onPress: () => console.log("Ask me later pressed")
-        },
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ],
-      { cancelable: false }
-    );
-  };
+
   rightSidebar = () => {
     return (
       <Container>
