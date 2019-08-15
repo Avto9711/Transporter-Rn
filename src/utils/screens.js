@@ -10,7 +10,8 @@ const Screens = {
         TransporterBoard: "TransporterBoardPage",
         MyRecipientsCouriers:"MyRecipientsCouriersPage",
         Settings: "SettingsPage",
-        PrivacyAndTerms:"PrivacyAndTermsPage"
+        PrivacyAndTerms:"PrivacyAndTermsPage",
+        PackageDeliveryDetail:"PackageDeliveryDetailPage"
     },
     AuthStack: {
         RegistrationFormPage: 'RegistrationFormPage',

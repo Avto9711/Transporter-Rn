@@ -11,6 +11,7 @@ import  Messages from '../pages/Messages'
 import  PrivacyAndTerms from '../pages/PrivacyAndTerms'
 import  Settings from '../pages/Settings'
 import  ProfileSetting from '../pages/ProfileSetting'
+import  PackageDeliveryDetail from '../pages/PackageDeliveryDetail'
 
 
 import {AppStack} from '../utils/screens'
@@ -99,6 +100,13 @@ const DrawerRouteConfig = {
       drawerMenuConfig:{
          drawerMenuTitle:"Settings",
          titleIcon:"cog",
+      }
+    },
+    [AppStack.PackageDeliveryDetail]: { 
+      screen: PackageDeliveryDetail,
+      drawerMenuConfig:{
+         drawerMenuTitle:"Package for delivery",
+         showInDrawerMenu:false,
       }
     },
 

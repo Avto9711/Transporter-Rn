@@ -69,13 +69,13 @@ class Trip extends Component{
             }, ...willingBringItems]
         }));
     }
-    removeItem(itemId){
+    removeItem(item){
         debugger;
                 //When using React, you should never mutate the state directly. 
         //If an object (or Array, which is an object too) is changed, you should create a new copy.
         const {willingBringItems } = this.state;
         this.setState(state  => ({
-            willingBringItems:  willingBringItems.filter(x=> x.itemId != itemId )
+            willingBringItems:  willingBringItems.filter(x=> x.itemId != item.itemId     )
         }));
     }
 
@@ -172,7 +172,7 @@ class Trip extends Component{
                                 <Icon style={{alignSelf:'flex-end'}} onPress={this.insertItemBring.bind(this)} type="EvilIcons" name="plus"></Icon>
                             </View>
 
-                            <View style={{marginTop:20}}>
+                            <View  style={{marginTop:20}}>
                                     {this.state.willingBringItems.map((itemWiling,index)=> 
                                     <View key={index} style={{
                                     borderColor:'#cecece', 

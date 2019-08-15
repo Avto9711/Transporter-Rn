@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import globalColors from "../utils/colors";
 import ImagePicker from "react-native-image-crop-picker";
-
+import  {AppStack} from '../utils/screens'
 import { Badge } from "native-base";
 import {
   Header,
