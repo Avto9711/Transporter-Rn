@@ -136,7 +136,7 @@ class Trip extends Component{
                                 </Item>
                             </View>
                             <View style={{marginTop:20}} >
-                                <Label style={{marginBottom:15}}>Time of arrival</Label>
+                                <Label style={{marginBottom:15}}>Time of arrival (Add month and week)</Label>
 
                                 <View style={{flexDirection:'row'}}>
                                     <View style={{ flex:5 }}>

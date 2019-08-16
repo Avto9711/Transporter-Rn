@@ -10,23 +10,18 @@ import {Header,Left,Icon, Container, Content,Body,Title,
     Label, 
     Grid,
     Col, 
-    Row, ListItem,CheckBox, Picker, Textarea, Switch, SwipeRow,List} from 'native-base'
+    Row, ListItem,CheckBox, Picker, Textarea, Switch, SwipeRow,List,Thumbnail} from 'native-base'
 
-import { Divider } from "react-native-elements";
+import { Divider, AirbnbRating } from "react-native-elements";
 
 
 function renderItemReferralLink(item,deleteReferralinkItem){
         return   <SwipeRow
         rightOpenValue={-75}
-        right={
-        <Button danger onPress={() =>{ deleteReferralinkItem(item.itemId);} }>
-            <Icon active name="trash" />
-        </Button>
-        }
         body={
         <View style={{ flex: 1 }}>
                 <Item  regular style={{marginBottom:2, marginTop:2}}>
-                    <Input value={item.text} />
+                    <Input editable={false} value={item.text} />
                 </Item>
         </View>
         }
@@ -201,7 +196,7 @@ class PackageDeliveryDetail extends Component{
                         </View>
                         <View style={{marginTop:10}} >
                             <Text>Estimated Value : 400USD</Text>
-                            <Text style={{fontSize:10}}>Minimun Security Deposit : 200USD Why?</Text>
+                            <Text style={{fontSize:10}}>Minimun Security Deposit : 200USD </Text><Text style={{color:'blue',fontSize:10}}>Why?</Text>
                         </View>
                         <View style={{marginTop:10}} >
                             <Text>Dimension : 13 x 42 x 25" (Medium)</Text>
@@ -264,6 +259,45 @@ class PackageDeliveryDetail extends Component{
                             </View>
                         </View>
                     </View>
+
+                    <View style={{marginTop:30}} >
+                            <Text style={{fontWeight:'bold'}}>About the recipient</Text>
+                        </View>
+                        <Divider style={{marginTop:5, height: 1, backgroundColor: "#cecece" }} />
+                    <List>
+                          <ListItem avatar>
+                            <Left>
+                              <Thumbnail source={{ uri: 'https://scontent.flrm1-1.fna.fbcdn.net/v/t1.0-9/61321713_10220091030693879_5542567377507450880_n.jpg?_nc_cat=100&_nc_oc=AQmLeAkBtHnb8I-v8-Ynm7PLnb7iT0iXoRhWlek0KEto8SvQj8EzduQGf2enTWy1v2o&_nc_ht=scontent.flrm1-1.fna&oh=348f35b7a138649adf9d63e0a9c7cb72&oe=5DDA5005'  }} />
+                            </Left>
+                            <Body style={{alignContent:'flex-start'}}>
+                              <Text>Israel Rivera, Kissimee Florida</Text>
+                              <AirbnbRating
+                               
+                                onFinishRating={this.ratingCompleted}
+                                count={5}
+                                defaultRating={3}
+                                size={25}
+                                showRating={false}
+                                
+                                        />   
+                            </Body>
+                            <Right>
+                               <Text style={{fontSize:15}}></Text>
+                            </Right>
+                          </ListItem>
+                        </List>
+                        <View style={{marginTop:30}} >
+                            <Text style={{fontWeight:'bold'}}>Actions</Text>
+                        </View>
+                        <Divider style={{marginTop:5, height: 1, backgroundColor: "#cecece" }} />
+                        <View style={{marginTop:20}}>
+                            <Button  full style={{backgroundColor: globalColors.baseBlue}}><Text> Contact Recipient </Text></Button>
+
+                        </View>
+                        <View style={{marginTop:5}}>
+                            <Button  full style={{backgroundColor: globalColors.baseBlue}}><Text> Start Transport Process </Text></Button>
+
+                        </View>
 
 
                 </ScrollView>

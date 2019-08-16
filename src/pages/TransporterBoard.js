@@ -418,7 +418,7 @@ function renderTranporterTrip({ item }) {
                 <Text style={{ fontSize: 15 }}><Text style={styles.bold}>To: </Text> Santo Domingo, RD </Text>
             </View>
             <View style={{ flex: 1, flexDirection: "column", justifyContent: 'space-between' }}>
-                <Text style={{ fontSize: 15 }}><Text style={styles.bold}>Date Arrival: </Text> 1 Dec</Text>
+                <Text style={{ fontSize: 15 }}><Text style={styles.bold}>Mont and week: </Text> Dec. Week 1</Text>
                 <Text style={{ fontSize: 15 }}><Text style={styles.bold}>Hour Arrival: </Text> 11:00 PM</Text>
             </View>
         </View>
