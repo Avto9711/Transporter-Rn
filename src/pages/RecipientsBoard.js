@@ -426,15 +426,7 @@ class RecipientsBoard extends Component {
                 renderItem={renderRecipientItem}
                 ItemSeparatorComponent={Divider}
               />
-              {/* <View style={{flex:1, flexDirection:'column'}}>
 
-                        {(this.state.items.map(item=>{
-
-
-                        }))}
-
-            
-                        </View> */}
             </ScrollView>
           </Content>
         </Container>

@@ -116,7 +116,7 @@ import { connect } from 'react-redux';
                           <List>
                           <ListItem avatar>
                             <Left>
-                              <Thumbnail source={{ uri: 'https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20767707_1580917721981297_1925557712514895773_n.jpg?_nc_cat=109&_nc_ht=scontent-mia3-2.xx&oh=a056107ce14fb63beee25421ecd527be&oe=5D1D588D'  }} />
+                              <Thumbnail source={{ uri: 'https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-9/20767707_1580917721981297_1925557712514895773_n.jpg?_nc_cat=109&_nc_oc=AQmVCdWJpjNGrTDWyF7r_L3v6c-ZDaARCjmLmbS3DGGD400TGqRUZcgSu7OamgFN4ys&_nc_ht=scontent-mia3-2.xx&oh=19e2d7889800bb23464a93b05b17d2cf&oe=5DC988DF'  }} />
                             </Left>
                             <Body>
                               <Text>Angel Torres</Text>
@@ -128,7 +128,7 @@ import { connect } from 'react-redux';
                           </ListItem>
                           <ListItem avatar>
                             <Left>
-                              <Thumbnail source={{ uri: 'https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-1/c54.101.432.432a/s240x240/10268650_946841328719523_8610575132192235314_n.jpg?_nc_cat=108&_nc_ht=scontent-mia3-2.xx&oh=da340e252f22a1d9c93532861b1c042a&oe=5D4E10DA'  }} />
+                              <Thumbnail source={{ uri: 'https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-9/10268650_946841328719523_8610575132192235314_n.jpg?_nc_cat=108&_nc_oc=AQksv8zWiM4kMWVie3Ou5PoU9xiY_Tf0eK8bbHCOZ2BpvVNw-SGKaNk36Kstlx6aXGY&_nc_ht=scontent-mia3-2.xx&oh=33c4a4960059424f9693234b94ce09e1&oe=5E02961B'  }} />
                             </Left>
                             <Body>
                               <Text>Leandro Jimenez</Text>
