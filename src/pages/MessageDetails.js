@@ -27,7 +27,7 @@ class MessageDetails extends React.Component {
       messages: [
         {
           _id: 1,
-          text: "Hello developer",
+          text: "Hey leandro, we wont send videos only pictures.",
           createdAt: new Date(),
           user: {
             _id: 2,
