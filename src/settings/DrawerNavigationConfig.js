@@ -8,6 +8,7 @@ import  RegistrationForm from '../pages/RegistrationForm'
 import  Trip from '../pages/Trip'
 import  TransporterBoard from '../pages/TransporterBoard'
 import  Messages from '../pages/Messages'
+import  MessageDetails from '../pages/MessageDetails'
 import  PrivacyAndTerms from '../pages/PrivacyAndTerms'
 import  Settings from '../pages/Settings'
 import  ProfileSetting from '../pages/ProfileSetting'
@@ -78,6 +79,13 @@ const DrawerRouteConfig = {
       drawerMenuConfig:{
         drawerMenuTitle:"Messages",
         titleIcon:"comments-o",
+      }
+    },
+    [AppStack.MessageDetails]: { 
+      screen: MessageDetails,
+      drawerMenuConfig:{
+        drawerMenuTitle:"MessageDetails",
+        showInDrawerMenu:false,
       }
     },
     

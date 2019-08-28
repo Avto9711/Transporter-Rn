@@ -4,6 +4,7 @@ const Screens = {
         Profile: 'ProfilePage',
         ProfileSetting: 'ProfileSetting',
         Message:"MessagePage",
+        MessageDetails:"MessageDetails",
         PackageDelivery: "PackageDeliveryPage",
         RecipientsBoard: "RecipientsBoardPage",
         Trip: "TripPage",
